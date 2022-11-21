@@ -1,13 +1,18 @@
 using Common;
 using Common.Extensions;
+using Common.Interfaces;
 using FluentMigrator.Runner;
 using MediatR;
+using MenuItemService.Domain.IRepositories;
+using MenuItemService.Domain.Models;
+using MenuItemService.Persistency.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddSingleton<IDapperContext, DapperContext>();
+builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
 .AddFluentMigratorCore()
         .ConfigureRunner(c => c.AddSqlServer2016()
@@ -18,7 +23,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 app.EnsureDatabase("MenuAppDb");
 app.MigrateDatabase();

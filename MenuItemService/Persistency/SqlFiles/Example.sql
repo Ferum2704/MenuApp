@@ -1,0 +1,1 @@
+CREATE OR ALTER PROC usp_GetAllTodoItemsByStatus(@isCompleted BIT) AS SELECT * FROM TodoItems WHERE IsCompleted = @isCompleted

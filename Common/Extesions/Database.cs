@@ -1,4 +1,5 @@
 ﻿
+using Common.Interfaces;
 using Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ namespace Common.Extensions
         {
             using (var scope = builder.ApplicationServices.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<DapperContext>();
+                var context = scope.ServiceProvider.GetRequiredService<IDapperContext>();
                 var query = "SELECT * FROM sys.databases WHERE name = @name";
                 var parameters = new DynamicParameters();
                 parameters.Add("name", dbName);
