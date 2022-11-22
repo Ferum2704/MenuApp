@@ -8,6 +8,7 @@ using MenuItemService.Domain.Models;
 using MenuItemService.Persistency.Repositories;
 using System.Reflection;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,7 +25,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
-app.EnsureDatabase("MenuAppDb");
+app.EnsureDatabase("MenuItemServiceDb");
 app.MigrateDatabase();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

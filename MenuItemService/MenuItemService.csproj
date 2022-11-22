@@ -9,15 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Persistency\SqlFiles\Example.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Properties\launchSettings.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Persistency\SqlFiles\Example.sql" />
+    <EmbeddedResource Include="Persistency\Migrations\Migration_202211181220\Example.sql" />
   </ItemGroup>
 
   <ItemGroup>

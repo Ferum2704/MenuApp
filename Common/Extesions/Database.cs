@@ -3,6 +3,7 @@ using Common.Interfaces;
 using Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System.Xml.Linq;
 
 namespace Common.Extensions
 {
@@ -12,10 +13,10 @@ namespace Common.Extensions
         {
             using (var scope = builder.ApplicationServices.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<IDapperContext>();
                 var query = "SELECT * FROM sys.databases WHERE name = @name";
                 var parameters = new DynamicParameters();
                 parameters.Add("name", dbName);
+                var context = scope.ServiceProvider.GetRequiredService<IDapperContext>();
                 using (var connection = context.CreateMasterConnection())
                 {
                     var records = connection.Query(query, parameters);
