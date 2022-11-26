@@ -12,7 +12,7 @@ namespace ReviewService.Persistency.Migrations
 
         public override void Up()
         {
-            Create.Table("ReviewItem")
+            Create.Table("Review")
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("Rating").AsInt32().NotNullable()
                 .WithColumn("Description").AsString().Nullable()
