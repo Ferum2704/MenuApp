@@ -20,9 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Application\Commands\" />
-    <Folder Include="Application\Queries\" />
-    <Folder Include="Domain\IRepositories\" />
-    <Folder Include="Persistency\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

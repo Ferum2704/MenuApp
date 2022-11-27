@@ -3,12 +3,15 @@ using Common.Extensions;
 using Common.Interfaces;
 using FluentMigrator.Runner;
 using MediatR;
+using ReviewService.Domain.IRepositories;
+using ReviewService.Persistency.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
+builder.Services.AddSingleton<IReviewRepository, ReviewRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
 .AddFluentMigratorCore()
         .ConfigureRunner(c => c.AddSqlServer2016()

@@ -10,7 +10,7 @@ namespace Common
 {
     public class Repository<T>:IRepository<T> where T:class
     {
-        private readonly IDapperContext _context;
+        protected readonly IDapperContext _context;
         public Repository(IDapperContext context)
         {
             _context = context;
@@ -20,8 +20,8 @@ namespace Common
             var query = "SELECT * FROM " + typeof(T).Name + "WHERE Id = @id";
             using (var connection = _context.CreateConnection())
             {
-                var menuItem = await connection.QueryFirstOrDefaultAsync<T>(query, new { id });
-                return menuItem;
+                var result = await connection.QueryFirstOrDefaultAsync<T>(query, new { id });
+                return result;
             }
 
         }
@@ -30,8 +30,8 @@ namespace Common
             var query = "SELECT * FROM " + typeof(T).Name;
             using (var connection = _context.CreateConnection())
             {
-                var menuItemList = await connection.QueryAsync<T>(query);
-                return menuItemList;
+                var resultList = await connection.QueryAsync<T>(query);
+                return resultList;
             }
         }
     }
