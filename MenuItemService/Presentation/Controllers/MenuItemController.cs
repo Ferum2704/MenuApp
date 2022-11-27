@@ -15,9 +15,14 @@ namespace MenuItemService.Presentation.Controllers
             _mediator= mediator;
         }
         [HttpGet]
-        public async Task<IActionResult> GetMenuItems()
+        public async Task<IActionResult> GetCategories()
         {
-            return Ok(await _mediator.Send(new GetAllMenuItemsQuery()));
+            return Ok(await _mediator.Send(new GetCategoriesQuery()));
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetByCategory(Guid categoryId)
+        {
+            return Ok(await _mediator.Send(new GetMenuItemsByCategoryQuery() { CategoryId= categoryId }));
         }
     }
 }

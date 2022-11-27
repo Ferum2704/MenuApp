@@ -17,7 +17,7 @@ namespace ReviewService.Application.Queries
 
             public async Task<IEnumerable<Review>> Handle(GetReviewsByItemIdQuery request, CancellationToken cancellationToken)
             {
-                return await _repository.GetReviewsByItemId(request.Id);
+                return await _repository.GetReviewsByItemIdAsync(request.Id);
             }
         }
     }

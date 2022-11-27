@@ -15,7 +15,7 @@ namespace Common
         {
             _context = context;
         }
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             var query = "SELECT * FROM " + typeof(T).Name + "WHERE Id = @id";
             using (var connection = _context.CreateConnection())
@@ -25,7 +25,7 @@ namespace Common
             }
 
         }
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             var query = "SELECT * FROM " + typeof(T).Name;
             using (var connection = _context.CreateConnection())

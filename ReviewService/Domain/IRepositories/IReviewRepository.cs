@@ -5,6 +5,6 @@ namespace ReviewService.Domain.IRepositories
 {
     public interface IReviewRepository:IRepository<Review>
     {
-        public Task<IEnumerable<Review>> GetReviewsByItemId(Guid itemId);
+        public Task<IEnumerable<Review>> GetReviewsByItemIdAsync(Guid itemId);
     }
 }

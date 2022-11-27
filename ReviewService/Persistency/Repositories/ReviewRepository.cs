@@ -10,7 +10,7 @@ namespace ReviewService.Persistency.Repositories
     {
         public ReviewRepository(IDapperContext context) : base(context) { }
 
-        public async Task<IEnumerable<Review>> GetReviewsByItemId(Guid itemId)
+        public async Task<IEnumerable<Review>> GetReviewsByItemIdAsync(Guid itemId)
         {
             var query = "SELECT * FROM Review WHERE MenuItemId = @itemId";
             using (var connection = _context.CreateConnection())
