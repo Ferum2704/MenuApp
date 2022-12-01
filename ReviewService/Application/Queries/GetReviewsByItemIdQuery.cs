@@ -1,23 +1,28 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using ReviewService.Domain.IRepositories;
 using ReviewService.Domain.Models;
+using ReviewService.Presentation.ViewModels;
 
 namespace ReviewService.Application.Queries
 {
-    public class GetReviewsByItemIdQuery:IRequest<IEnumerable<Review>>
+    public class GetReviewsByItemIdQuery:IRequest<IEnumerable<ReviewVM>>
     {
         public Guid Id { get; set; }
-        public class GetReviewsByItemIdQueryHandler : IRequestHandler<GetReviewsByItemIdQuery, IEnumerable<Review>>
+        public class GetReviewsByItemIdQueryHandler : IRequestHandler<GetReviewsByItemIdQuery, IEnumerable<ReviewVM>>
         {
             private readonly IReviewRepository _repository;
-            public GetReviewsByItemIdQueryHandler(IReviewRepository repository)
+            private readonly IMapper _mapper;
+            public GetReviewsByItemIdQueryHandler(IReviewRepository repository, IMapper mapper)
             {
                 _repository = repository;
+                _mapper = mapper;
             }
 
-            public async Task<IEnumerable<Review>> Handle(GetReviewsByItemIdQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<ReviewVM>> Handle(GetReviewsByItemIdQuery request, CancellationToken cancellationToken)
             {
-                return await _repository.GetReviewsByItemIdAsync(request.Id);
+                var reviews = await _repository.GetReviewsByItemIdAsync(request.Id);
+                return reviews.Select(r => _mapper.Map<ReviewVM>(r));
             }
         }
     }

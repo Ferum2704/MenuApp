@@ -12,7 +12,7 @@ namespace ReviewService.Persistency.Migrations
 
         public override void Up()
         {
-            Alter.Table("Review").AddColumn("VisitorId").AsInt32().NotNullable();
+            Alter.Table("Review").AddColumn("VisitorId").AsGuid().NotNullable().WithDefaultValue(Guid.NewGuid());
         }
     }
 }

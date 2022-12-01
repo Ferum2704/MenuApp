@@ -18,6 +18,7 @@ builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
             .WithGlobalConnectionString(builder.Configuration.GetConnectionString("DefaultConnection"))
             .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
