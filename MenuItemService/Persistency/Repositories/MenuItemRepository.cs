@@ -9,14 +9,16 @@ namespace MenuItemService.Persistency.Repositories
     public class MenuItemRepository : Repository<MenuItem>, IMenuItemRepository
     {
         public MenuItemRepository(IDapperContext context) : base(context) { }
-
-        public async Task<IEnumerable<MenuItem>> GetByCategoryAsync(Guid categoryId)
+        public async Task<IEnumerable<CategoriedMenuItem>> GetCategoriedMenuItems()
         {
-            var query = "SELECT * FROM MenuItem WHERE CategoryId = @categoryId";
+            string query = "SELECT MenuItem.Id AS MenuItemId," +
+                " MenuItem.Name AS MenuItemName, Price, PhotoName, Category.Id AS CategoryId," +
+                " Category.Name AS CategoryName, Priority FROM MenuItem INNER JOIN Category " +
+                "ON MenuItem.CategoryId = Category.Id";
             using (var connection = _context.CreateConnection())
             {
-                var menuItems = await connection.QueryAsync<MenuItem>(query, new { categoryId });
-                return menuItems;
+                IEnumerable<CategoriedMenuItem> categoriedMenuItems = await connection.QueryAsync<CategoriedMenuItem>(query);
+                return categoriedMenuItems;
             }
         }
     }

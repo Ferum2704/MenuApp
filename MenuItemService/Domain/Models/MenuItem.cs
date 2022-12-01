@@ -6,6 +6,6 @@
         public string Name { get; set; } = null!;
         public decimal Price { get; set; }
         public Guid CategoryId { get; set; }
-        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+        public IEnumerable<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
 }

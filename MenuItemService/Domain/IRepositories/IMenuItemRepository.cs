@@ -5,6 +5,6 @@ namespace MenuItemService.Domain.IRepositories
 {
     public interface IMenuItemRepository:IRepository<MenuItem>
     {
-        public Task<IEnumerable<MenuItem>> GetByCategoryAsync(Guid id);
+        public Task<IEnumerable<CategoriedMenuItem>> GetCategoriedMenuItems();
     }
 }

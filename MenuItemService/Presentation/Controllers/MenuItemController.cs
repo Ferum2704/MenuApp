@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MenuItemService.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class MenuItemController : ControllerBase
     {
@@ -17,12 +17,7 @@ namespace MenuItemService.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            return Ok(await _mediator.Send(new GetCategoriesQuery()));
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetByCategory(Guid categoryId)
-        {
-            return Ok(await _mediator.Send(new GetMenuItemsByCategoryQuery() { CategoryId= categoryId }));
+            return Ok(await _mediator.Send(new GetCategoriesWithMenuItemsQuery()));
         }
     }
 }

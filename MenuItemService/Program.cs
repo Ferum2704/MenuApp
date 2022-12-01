@@ -14,7 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
-builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
 .AddFluentMigratorCore()
         .ConfigureRunner(c => c.AddSqlServer2016()
