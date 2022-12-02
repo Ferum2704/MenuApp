@@ -5,24 +5,24 @@ using MenuItemService.Presentation.ViewModels;
 
 namespace MenuItemService.Application.Queries
 {
-    public class GetCategoriesWithMenuItemsQuery:IRequest<IEnumerable<CategoryVM>>
+    public class GetCategoriesWithMenuItemsQuery:IRequest<IEnumerable<CategoryViewModel>>
     {
-        public class GetCategoriesWithMenuItemsQueryHandler : IRequestHandler<GetCategoriesWithMenuItemsQuery, IEnumerable<CategoryVM>>
+        public class GetCategoriesWithMenuItemsQueryHandler : IRequestHandler<GetCategoriesWithMenuItemsQuery, IEnumerable<CategoryViewModel>>
         {
             private readonly IMenuItemRepository _repository;
             public GetCategoriesWithMenuItemsQueryHandler(IMenuItemRepository repository)
             {
                 _repository = repository;
             }
-            public async Task<IEnumerable<CategoryVM>> Handle(GetCategoriesWithMenuItemsQuery query, CancellationToken cancellationToken)
+            public async Task<IEnumerable<CategoryViewModel>> Handle(GetCategoriesWithMenuItemsQuery query, CancellationToken cancellationToken)
             {
-                var categoriedMenuItems = await _repository.GetCategoriedMenuItems();
-                return categoriedMenuItems.GroupBy(i => new { i.CategoryId, i.CategoryName, i.Priority }).Select(g => new CategoryVM()
+                var categorizedMenuItems = await _repository.GetCategorizedMenuItems();
+                return categorizedMenuItems.GroupBy(i => new { i.CategoryId, i.CategoryName, i.Priority }).Select(g => new CategoryViewModel()
                 {
                     Id = g.Key.CategoryId,
                     Name = g.Key.CategoryName,
                     Priority = g.Key.Priority,
-                    MenuItems = g.Select(i => new ShortMenuItemVM() { Id = i.MenuItemId, Name = i.MenuItemName, Price = i.Price })
+                    MenuItems = g.Select(i => new ShortMenuItemViewModel() { Id = i.MenuItemId, Name = i.MenuItemName, Price = i.Price })
                 });
             }
         }

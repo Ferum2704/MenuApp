@@ -9,7 +9,7 @@ namespace MenuItemService.Persistency.Repositories
     public class MenuItemRepository : Repository<MenuItem>, IMenuItemRepository
     {
         public MenuItemRepository(IDapperContext context) : base(context) { }
-        public async Task<IEnumerable<CategoriedMenuItem>> GetCategoriedMenuItems()
+        public async Task<IEnumerable<CategoriedMenuItem>> GetCategorizedMenuItems()
         {
             string query = "SELECT MenuItem.Id AS MenuItemId," +
                 " MenuItem.Name AS MenuItemName, Price, PhotoName, Category.Id AS CategoryId," +

@@ -2,11 +2,11 @@
 using ReviewService.Domain.Models;
 using ReviewService.Presentation.ViewModels;
 
-namespace ReviewService.Persistency.Profiles
+namespace ReviewService.Profiles
 {
-    public class ReviewMappingProfile:Profile
+    public class MappingProfile : Profile
     {
-        public ReviewMappingProfile()
+        public MappingProfile()
         {
             CreateMap<Review, ReviewVM>().ReverseMap();
         }
