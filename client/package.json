@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@iconify/react": "^4.0.1",
     "eslint-config-react-app": "^7.0.1",
     "jest": "^27.5.1",
     "jest-editor-support": "^30.2.1"

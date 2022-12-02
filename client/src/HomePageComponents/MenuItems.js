@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function MenuItems() {
-  return (
-    <div>MenuItems</div>
-  )
+export default function Menu() {
+  return <div>Menu Items</div>;
 }
