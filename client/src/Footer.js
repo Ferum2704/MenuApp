@@ -6,15 +6,19 @@ import "./css/Footer.css";
 export default function () {
   return (
     <Container
-      maxWidth="md"
-      sx={{ bgcolor: "yellow", borderTop: 3, height: "20%" }}
+      maxWidth="lg"
+      sx={{
+        bgcolor: "yellow",
+        borderTop: 3,
+        height: "20vh",
+      }}
     >
       <Grid
         container
         justifyContent="space-between"
         flexDirection={{ sm: "column", md: "row" }}
       >
-        <div style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left", paddingTop: "20px" }}>
           <span style={{ fontSize: 25 }}>Contacts:</span>
           <span style={{ fontSize: 20 }}>
             <br></br>Address: Ivana Fedorova street, 10

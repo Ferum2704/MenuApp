@@ -7,5 +7,6 @@
         public string? Description { get; set; }
         public Guid MenuItemId { get; set; }
         public DateTime PostDate { get; set; }
+        public Guid VisitorId { get; set; }
     }
 }

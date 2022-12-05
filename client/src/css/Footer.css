@@ -1,12 +1,13 @@
 .networks {
   display: flex;
   justify-content: space-around;
-  padding-top: 2.5%;
+  margin: auto 0;
+  gap: 20px;
   width: 20%;
 }
 @media screen and (max-width: 430px) {
   .networks {
-    margin-left: 20%;
+    margin: 0 auto;
     padding-top: 15px;
     width: 50%;
   }
