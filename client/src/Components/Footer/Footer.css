@@ -1,3 +1,13 @@
+.footer {
+  background-color: yellow;
+  border-top: 3;
+  min-height: 20vh;
+}
+.footerText {
+  text-align: left;
+  padding-top: 20px;
+  font-size: 20px;
+}
 .networks {
   display: flex;
   justify-content: space-around;

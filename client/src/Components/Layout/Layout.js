@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import { Container } from "reactstrap";
-import "./css/Layout.css";
+import "./Layout.css";
 export default function Layout(props) {
   return (
     <div>

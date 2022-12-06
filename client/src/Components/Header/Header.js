@@ -3,9 +3,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link, useNavigate } from "react-router-dom";
-import useWindowWidth from "./hooks/getWindowWidth";
+import "./Header.css";
 function Header() {
   const navigate = useNavigate();
   const [value, setValue] = React.useState("/");
@@ -14,7 +13,6 @@ function Header() {
     setValue(newValue);
     navigate(newValue);
   };
-  const width = useWindowWidth();
   return (
     <Box sx={{ width: "100%" }}>
       <Tabs
@@ -26,31 +24,27 @@ function Header() {
       >
         <Tab
           iconPosition="start"
-          icon={<ListAltIcon style={{ fontSize: "30px" }} />}
+          icon={
+            <Icon icon="material-symbols:list-alt-outline" className="icon" />
+          }
           value="/"
-          label={width > 400 ? "Menu" : ""}
+          label={<div className="iconLabel">Menu</div>}
         />
         <Tab
           iconPosition="start"
           icon={
-            <Icon
-              icon="icon-park-outline:transaction-order"
-              style={{ fontSize: "30px" }}
-            />
+            <Icon icon="icon-park-outline:transaction-order" className="icon" />
           }
           value="/MyOrders"
-          label={width > 400 ? "My Orders" : ""}
+          label={<div className="iconLabel">My Orders</div>}
         />
         <Tab
           iconPosition="start"
           icon={
-            <Icon
-              icon="mdi:clipboard-text-history-outline"
-              style={{ fontSize: "30px" }}
-            />
+            <Icon icon="mdi:clipboard-text-history-outline" className="icon" />
           }
           value="/OrderHistory"
-          label={width > 400 ? "Order History" : ""}
+          label={<div className="iconLabel">Order History</div>}
         />
       </Tabs>
     </Box>

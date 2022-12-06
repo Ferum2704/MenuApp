@@ -1,0 +1,11 @@
+.icon {
+  font-size: 30px;
+}
+.iconLabel {
+  padding-top: 0;
+}
+@media screen and (max-width: 400px) {
+  .iconLabel {
+    display: none;
+  }
+}
