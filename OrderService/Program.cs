@@ -10,6 +10,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())

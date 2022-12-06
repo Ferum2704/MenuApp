@@ -22,7 +22,8 @@ namespace OrderService.Persistency.Migrations
             Create.Table("MenuItemOrder")
                 .WithColumn("Id").AsGuid().PrimaryKey().NotNullable()
                 .WithColumn("MenuItemId").AsGuid().NotNullable()
-                .WithColumn("OrderId").AsGuid().NotNullable().ForeignKey("Order", "Id");
+                .WithColumn("OrderId").AsGuid().NotNullable().ForeignKey("Order", "Id")
+                .WithColumn("Number").AsInt32().NotNullable().WithDefaultValue(1);
         }
     }
 }

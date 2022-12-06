@@ -12,9 +12,9 @@ namespace OrderService.Persistency.Repositories
         {
         }
 
-        public async Task<IEnumerable<Guid>> GetMostPopularItemsId()
+        public async Task<IEnumerable<Guid>> GetMostPopularItemsId(int itemsNumber)
         {
-            var query = "SELECT TOP 3 MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";
+            var query = "SELECT TOP 2 MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";
             using (var connection = _context.CreateConnection())
             {
                 IEnumerable<Guid> menuItemsIds = await connection.QueryAsync<Guid>(query);

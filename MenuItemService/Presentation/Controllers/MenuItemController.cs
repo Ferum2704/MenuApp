@@ -19,5 +19,10 @@ namespace MenuItemService.Presentation.Controllers
         {
             return Ok(await _mediator.Send(new GetCategoriesWithMenuItemsQuery()));
         }
+        [HttpGet]
+        public async Task<IActionResult> GetMostPopularMenuItems()
+        {
+            return Ok(await _mediator.Send(new GetMostPopularMenuItemsQuery()));
+        }
     }
 }

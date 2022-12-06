@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Application\Commands\" />
-    <Folder Include="Application\Queries\" />
     <Folder Include="Presentation\ViewModels\" />
   </ItemGroup>
 

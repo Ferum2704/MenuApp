@@ -12,6 +12,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
@@ -24,6 +25,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 app.EnsureDatabase("MenuItemServiceDb");
 app.MigrateDatabase();
