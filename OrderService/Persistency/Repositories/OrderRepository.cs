@@ -17,7 +17,7 @@ namespace OrderService.Persistency.Repositories
             var query = "SELECT TOP 2 MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";
             using (var connection = _context.CreateConnection())
             {
-                IEnumerable<Guid> menuItemsIds = await connection.QueryAsync<Guid>(query);
+                IEnumerable<Guid> menuItemsIds = await connection.QueryAsync<Guid>(query, new {itemsNumber});
                 return menuItemsIds;
             }
         }

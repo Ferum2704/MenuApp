@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import MenuItems from "./Components/HomePage/MenuItems";
-import MenuItemInfo from "./Components/MenuItemPage/MenuItemInfo";
 import MyOrders from "./Components/MyOrdersPage/MyOrders";
 import OrderHistory from "./Components/OrderHistoryPage/OrderHistory";
 function App() {
