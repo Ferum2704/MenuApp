@@ -3,6 +3,8 @@ using Common.Extensions;
 using Common.Interfaces;
 using FluentMigrator.Runner;
 using MediatR;
+using OrderService.Application;
+using OrderService.Domain;
 using OrderService.Domain.IRepositories;
 using OrderService.Persistency.Repositories;
 using System.Reflection;

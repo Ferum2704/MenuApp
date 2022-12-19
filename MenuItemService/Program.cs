@@ -6,6 +6,8 @@ using MediatR;
 using MenuItemService.Domain.IRepositories;
 using MenuItemService.Domain.Models;
 using MenuItemService.Persistency.Repositories;
+using MenuItemService.Proxies.ProxyInterfaces;
+using MenuItemService.Proxies;
 using System.Reflection;
 
 
@@ -13,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IOrderServiceProxy, OrderServiceProxy>();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())

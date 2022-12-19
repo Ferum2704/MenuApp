@@ -3,6 +3,7 @@ using MediatR;
 using MenuItemService.Domain.IRepositories;
 using MenuItemService.Domain.Models;
 using MenuItemService.Presentation.ViewModels;
+using MenuItemService.Proxies.ProxyInterfaces;
 using Microsoft.Net.Http.Headers;
 
 namespace MenuItemService.Application.Queries
@@ -13,21 +14,19 @@ namespace MenuItemService.Application.Queries
         public class GetMostPopularMenuItemsQueryHandler : IRequestHandler<GetMostPopularMenuItemsQuery, IEnumerable<ShortMenuItemViewModel>>
         {
             private readonly IMenuItemRepository _repository;
-            private readonly IHttpClientFactory _httpClientFactory;
+            private readonly IOrderServiceProxy _proxy;
             private readonly IMapper _mapper;
             public GetMostPopularMenuItemsQueryHandler(IMenuItemRepository repository, 
-                IHttpClientFactory httpClientFactory, IMapper mapper)
+                IOrderServiceProxy proxy, IMapper mapper)
             {
                 _repository = repository;
-                _httpClientFactory = httpClientFactory;
+                _proxy = proxy;
                 _mapper = mapper;
             }
 
             public async Task<IEnumerable<ShortMenuItemViewModel>> Handle(GetMostPopularMenuItemsQuery request, CancellationToken cancellationToken)
             {
-                var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44314/api/Order/GetMostPopularMenuItems");
-                var httpClient = _httpClientFactory.CreateClient();
-                IEnumerable<Guid> response = await httpClient.Send(httpRequestMessage).Content.ReadFromJsonAsync<IEnumerable<Guid>>();
+                var response = await _proxy.GetFromJsonAsync<IEnumerable<Guid>>("GetMostPopularMenuItems");
                 IEnumerable<MenuItem> menuItems = await _repository.GetMostPopularMenuItems(response);
                 return menuItems.Select(item => _mapper.Map<ShortMenuItemViewModel>(item));
             }

@@ -1,9 +1,14 @@
 import React from "react";
 import { Container } from "@mui/system";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import MostPopularItems from "./MostPopularItems/MostPopularItems";
+import { Pagination } from "swiper";
 export default function MenuItems() {
   return (
     <Container sx={{ minHeight: "70vh" }}>
-      <h2>Menu Items</h2>
+      <MostPopularItems />
     </Container>
   );
 }
