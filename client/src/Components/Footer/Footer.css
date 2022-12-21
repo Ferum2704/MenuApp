@@ -2,6 +2,7 @@
   background-color: yellow;
   border-top: 3;
   min-height: 20vh;
+  width: 80%;
 }
 .footerText {
   text-align: left;
