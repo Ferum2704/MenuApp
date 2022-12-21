@@ -9,3 +9,19 @@
 .mostPopularItemsSwiper {
   padding-bottom: 35px !important;
 }
+.swiper-button-prev {
+  top: 40% !important;
+  left: 10% !important;
+}
+.swiper-button-next {
+  top: 40% !important;
+  right: 10% !important;
+}
+@media screen and (max-width: 500px) {
+  .swiper-button-prev {
+    left: 1% !important;
+  }
+  .swiper-button-next {
+    right: 1% !important;
+  }
+}

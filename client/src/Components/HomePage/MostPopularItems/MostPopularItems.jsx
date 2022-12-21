@@ -1,5 +1,6 @@
 import React from "react";
 import MostPopularItem from "../MostPopularItem/MostPopularItem";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import { MENUITEM_SERVICE_URL } from "../../../servicesURLs";
@@ -22,11 +23,16 @@ export default function MostPopularItems() {
   return (
     <Container maxWidth="lg" className="mostPopularItems">
       <p className="mostPopularItemsTitle">Most Popular Menu Items</p>
+      <div class="swiper-button-prev swiper-button-prev-unique"></div>
+      <div class="swiper-button-next swiper-button-next-unique"></div>
       <Swiper
         className="mostPopularItemsSwiper"
         modules={[Navigation, Pagination]}
         spaceBetween={20}
-        navigation
+        navigation={{
+          nextEl: ".swiper-button-next-unique",
+          prevEl: ".swiper-button-prev-unique",
+        }}
         slidesPerView={2}
         pagination={{ clickable: true }}
         breakpoints={{
