@@ -5,24 +5,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MenuItemService.Presentation.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MenuItemController : ControllerBase
     {
         private IMediator _mediator;
         public MenuItemController(IMediator mediator)
         {
-            _mediator= mediator;
+            _mediator = mediator;
         }
-        [HttpGet]
+        [HttpGet("categorizedItems")]
         public async Task<IActionResult> GetCategories()
         {
             return Ok(await _mediator.Send(new GetCategoriesWithMenuItemsQuery()));
         }
-        [HttpGet]
-        public async Task<IActionResult> GetMostPopularMenuItems()
+        [HttpGet("mostPopularItems/{itemsNumber:int?}")]
+        public async Task<IActionResult> GetMostPopularMenuItems(int itemsNumber = 4)
         {
-            return Ok(await _mediator.Send(new GetMostPopularMenuItemsQuery()));
+            return Ok(await _mediator.Send(new GetMostPopularMenuItemsQuery() { ItemsNumber = itemsNumber}));
         }
     }
 }

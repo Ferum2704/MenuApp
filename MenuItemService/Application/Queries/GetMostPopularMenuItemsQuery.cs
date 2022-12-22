@@ -26,7 +26,7 @@ namespace MenuItemService.Application.Queries
 
             public async Task<IEnumerable<ShortMenuItemViewModel>> Handle(GetMostPopularMenuItemsQuery request, CancellationToken cancellationToken)
             {
-                var response = await _proxy.GetFromJsonAsync<IEnumerable<Guid>>("GetMostPopularMenuItems");
+                var response = await _proxy.GetMostPopularMenuItemsIds(request.ItemsNumber);
                 IEnumerable<MenuItem> menuItems = await _repository.GetMostPopularMenuItems(response);
                 return menuItems.Select(item => _mapper.Map<ShortMenuItemViewModel>(item));
             }

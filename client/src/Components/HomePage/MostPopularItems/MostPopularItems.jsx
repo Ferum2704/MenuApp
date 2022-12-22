@@ -12,7 +12,7 @@ import "swiper/css/bundle";
 
 export default function MostPopularItems() {
   const [mostPopularItems, setMostPopularItems] = useState([]);
-  const url = "/GetMostPopularMenuItems";
+  const url = "/mostPopularItems/2";
 
   useEffect(() => {
     axios.get(MENUITEM_SERVICE_URL + url).then((response) => {
