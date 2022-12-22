@@ -6,22 +6,22 @@
   color: red;
   text-shadow: 2px 2px 5px red;
 }
-.mostPopularItemsSwiper {
-  padding-bottom: 35px !important;
+.swiper.mostPopularItemsSwiper {
+  padding-bottom: 35px;
 }
-.swiper-button-prev {
-  top: 40% !important;
-  left: 10% !important;
+.swiper-button-prev.swiper-button-prev-unique {
+  top: 40%;
+  left: 10%;
 }
-.swiper-button-next {
-  top: 40% !important;
-  right: 10% !important;
+.swiper-button-next.swiper-button-next-unique {
+  top: 40%;
+  right: 10%;
 }
 @media screen and (max-width: 500px) {
-  .swiper-button-prev {
-    left: 1% !important;
+  .swiper-button-prev.swiper-button-prev-unique {
+    left: 1%;
   }
-  .swiper-button-next {
-    right: 1% !important;
+  .swiper-button-next.swiper-button-next-unique {
+    right: 1%;
   }
 }
