@@ -13,8 +13,8 @@ export default function () {
       >
         <div className="footerText">
           <b>Contacts:</b>
-          <br></br>Address: Ivana Fedorova street, 10
-          <br></br>Phone number: 050-458-34-41
+          <div>Address: Ivana Fedorova street, 10</div>
+          <div>Phone number: 050-458-34-41</div>
         </div>
         <div className="networks">
           <div>

@@ -3,7 +3,7 @@ import MostPopularItem from "../MostPopularItem/MostPopularItem";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-import { MENUITEM_SERVICE_URL } from "../../../servicesURLs";
+import { MENUITEM_SERVICE_URL } from "../../../constants/servicesURLs";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "@mui/system";
@@ -42,24 +42,12 @@ export default function MostPopularItems() {
           },
         }}
       >
-        {Array.isArray(mostPopularItems) ? (
+        {mostPopularItems &&
           mostPopularItems.map((mostPopularItem) => (
             <SwiperSlide key={mostPopularItem.id}>
               <MostPopularItem item={mostPopularItem} />
             </SwiperSlide>
-          ))
-        ) : (
-          <div></div>
-        )}
-        {Array.isArray(mostPopularItems) ? (
-          mostPopularItems.map((mostPopularItem) => (
-            <SwiperSlide key={mostPopularItem.id}>
-              <MostPopularItem item={mostPopularItem} />
-            </SwiperSlide>
-          ))
-        ) : (
-          <div></div>
-        )}
+          ))}
       </Swiper>
     </Container>
   );

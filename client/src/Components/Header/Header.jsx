@@ -7,17 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 function Header() {
   const navigate = useNavigate();
-  const [value, setValue] = React.useState("/");
+  const [selectedTab, setSelectedTab] = React.useState("/");
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    navigate(newValue);
+  const handleSelectedTabChange = (event, newSelectedTab) => {
+    setSelectedTab(newSelectedTab);
+    navigate(newSelectedTab);
   };
   return (
     <Box sx={{ width: "100%" }}>
       <Tabs
-        value={value}
-        onChange={handleChange}
+        value={selectedTab}
+        onChange={handleSelectedTabChange}
         variant="fullWidth"
         textColor="secondary"
         indicatorColor="secondary"
