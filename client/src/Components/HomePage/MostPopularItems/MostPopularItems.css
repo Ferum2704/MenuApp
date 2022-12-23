@@ -1,0 +1,27 @@
+.mostPopularItemsTitle {
+  margin-bottom: 0;
+  text-align: left;
+  font-weight: 500;
+  font-size: 25px;
+  color: red;
+  text-shadow: 2px 2px 5px red;
+}
+.swiper.mostPopularItemsSwiper {
+  padding-bottom: 35px;
+}
+.swiper-button-prev.swiper-button-prev-unique {
+  top: 40%;
+  left: 10%;
+}
+.swiper-button-next.swiper-button-next-unique {
+  top: 40%;
+  right: 10%;
+}
+@media screen and (max-width: 500px) {
+  .swiper-button-prev.swiper-button-prev-unique {
+    left: 1%;
+  }
+  .swiper-button-next.swiper-button-next-unique {
+    right: 1%;
+  }
+}

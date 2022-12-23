@@ -15,7 +15,7 @@ namespace ReviewService.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet("reviewsByMenuItemId")]
         public async Task<IActionResult> GetReviewsOfMenuItem(Guid id)
         {
             return Ok(await _mediator.Send(new GetReviewsByItemIdQuery() { Id = id }));

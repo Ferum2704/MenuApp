@@ -6,12 +6,16 @@ using MediatR;
 using MenuItemService.Domain.IRepositories;
 using MenuItemService.Domain.Models;
 using MenuItemService.Persistency.Repositories;
+using MenuItemService.Proxies.ProxyInterfaces;
+using MenuItemService.Proxies;
 using System.Reflection;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IOrderServiceProxy, OrderServiceProxy>();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IMenuItemRepository, MenuItemRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
@@ -24,7 +28,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
+app.UseCors(x =>
+{
+    x.AllowAnyMethod()
+        .AllowAnyHeader()
+        .SetIsOriginAllowed(origin => true) // allow any origin
+        .AllowCredentials();
+});
 app.EnsureDatabase("MenuItemServiceDb");
 app.MigrateDatabase();
 // Configure the HTTP request pipeline.

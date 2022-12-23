@@ -1,0 +1,25 @@
+.footer {
+  background-color: yellow;
+  border-top: 3;
+  min-height: 20vh;
+  width: 80%;
+}
+.footerText {
+  text-align: left;
+  padding-top: 20px;
+  font-size: 20px;
+}
+.networks {
+  display: flex;
+  justify-content: space-around;
+  margin: auto 0;
+  gap: 20px;
+  width: 20%;
+}
+@media screen and (max-width: 430px) {
+  .networks {
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 50%;
+  }
+}

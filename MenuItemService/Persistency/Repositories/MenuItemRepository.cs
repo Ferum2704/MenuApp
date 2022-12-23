@@ -21,5 +21,21 @@ namespace MenuItemService.Persistency.Repositories
                 return categoriedMenuItems;
             }
         }
+
+        public async Task<IEnumerable<MenuItem>> GetMostPopularMenuItems(IEnumerable<Guid> itemsGuids)
+        {
+            string concatenatedGuids = string.Empty;
+            foreach (var guid in itemsGuids)
+            {
+                concatenatedGuids += "'" + guid.ToString() + "',";
+            }
+            concatenatedGuids = concatenatedGuids.Remove(concatenatedGuids.Length-1);
+            string query = "SELECT * FROM MenuItem WHERE Id IN (" + concatenatedGuids +")";
+            using (var connection = _context.CreateConnection())
+            {
+                IEnumerable<MenuItem> menuItems = await connection.QueryAsync<MenuItem>(query);
+                return menuItems;
+            }
+        }
     }
 }

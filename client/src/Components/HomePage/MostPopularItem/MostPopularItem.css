@@ -1,0 +1,61 @@
+.css-bhp9pd-MuiPaper-root-MuiCard-root.mostPopularItemCard {
+  margin-top: 20px;
+  min-height: 250px;
+  border: 1px solid black;
+  background-color: rgb(209, 241, 182);
+}
+.mostPopularItemImg {
+  width: 250px;
+  height: 190px;
+}
+.mostPopularItemCard .mostPopularItemTitle {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  line-height: 0.9;
+  font-size: 25px;
+  color: rgb(10, 10, 165);
+}
+.mostPopularItemInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mostPopularItemPrice > span {
+  font-size: 25px;
+  font-weight: 500;
+}
+.mostPopularItemPrice {
+  font-size: 20px;
+}
+@media screen and (max-width: 500px) {
+  .mostPopularItemImg {
+    width: 150px;
+    height: 120px;
+  }
+  .mostPopularItemInfo {
+    flex-direction: column;
+  }
+  .mostPopularItemCard .mostPopularItemInfo {
+    padding-top: 1px;
+    padding-bottom: 3px !important;
+  }
+  .mostPopularItemInfo .addToOrderButton {
+    line-height: 1.25;
+    max-height: 40px;
+    font-size: 12px;
+  }
+  .mostPopularItemTitle {
+    font-size: 20px;
+  }
+  .mostPopularItemCard {
+    min-height: 32vh;
+  }
+  .mostPopularItemPrice > span {
+    font-size: 20px;
+  }
+  .mostPopularItemPrice {
+    text-align: left;
+    font-size: 16px;
+  }
+}
