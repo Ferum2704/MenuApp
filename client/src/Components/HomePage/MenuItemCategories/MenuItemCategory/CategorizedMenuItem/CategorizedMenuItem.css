@@ -1,0 +1,15 @@
+.categorizedMenuItem {
+  min-height: 5vh;
+  border-bottom: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.categorizedMenuItemDetails {
+  text-align: left;
+  font-size: 18px;
+}
+.categorizedMenuItemPrice {
+  font-size: 20px;
+  font-weight: 700;
+}
