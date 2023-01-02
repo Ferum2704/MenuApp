@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { MENUITEM_SERVICE_URL } from "../constants/servicesURLs";
-import { requestStatuses } from "../constants/apiRequestStatus";
+import { REQUEST_STATUSES } from "../constants/apiRequestStatus";
 const initialState = {
   items: [],
   status: "idle",
@@ -24,14 +24,14 @@ const menuItemsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCategorizedItems.pending, (state, action) => {
-        state.status = requestStatuses.loading;
+        state.status = REQUEST_STATUSES.loading;
       })
       .addCase(fetchCategorizedItems.fulfilled, (state, action) => {
-        state.status = requestStatuses.succeeded;
+        state.status = REQUEST_STATUSES.succeeded;
         state.items = action.payload;
       })
       .addCase(fetchCategorizedItems.rejected, (state, action) => {
-        state.status = requestStatuses.failed;
+        state.status = REQUEST_STATUSES.failed;
         state.error = action.error.message;
       });
   },

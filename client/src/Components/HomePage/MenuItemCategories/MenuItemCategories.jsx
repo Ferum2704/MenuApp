@@ -11,6 +11,7 @@ import {
   selectMenuItemsError,
   fetchCategorizedItems,
 } from "../../../slices/menuItemsSlice";
+import { REQUEST_STATUSES } from "../../../constants/apiRequestStatus";
 
 export default function MenuItemCategories() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function MenuItemCategories() {
   const error = useSelector(selectMenuItemsError);
 
   useEffect(() => {
-    if (menuItemsStatus === "idle") {
+    if (menuItemsStatus === REQUEST_STATUSES.idle) {
       dispatch(fetchCategorizedItems());
     }
   }, [menuItemsStatus, dispatch]);

@@ -1,0 +1,16 @@
+.loginForm {
+  text-align: center;
+}
+.loginFormTitle {
+  font-size: 25px;
+  font-weight: 700;
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root.loginFormField {
+  margin-top: 20px;
+}
+.loginFormSubmitButton {
+  margin-bottom: 10px;
+}
+.css-hlj6pa-MuiDialogActions-root.loginFormSubmitButton {
+  justify-content: center;
+}
