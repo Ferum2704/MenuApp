@@ -23,8 +23,8 @@ export default function MostPopularItems() {
   return (
     <Container maxWidth="lg" className="mostPopularItems">
       <p className="mostPopularItemsTitle">Most Popular Menu Items</p>
-      <div class="swiper-button-prev swiper-button-prev-unique"></div>
-      <div class="swiper-button-next swiper-button-next-unique"></div>
+      <div className="swiper-button-prev swiper-button-prev-unique"></div>
+      <div className="swiper-button-next swiper-button-next-unique"></div>
       <Swiper
         className="mostPopularItemsSwiper"
         modules={[Navigation, Pagination]}
