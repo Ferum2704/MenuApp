@@ -27,28 +27,31 @@ export default function MenuItemCategories() {
   }, [menuItemsStatus, dispatch]);
 
   const renderMenuItems = (status) => {
-    if (status === "loading") {
-      return (
-        <div>
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-          Loading...
-        </div>
-      );
-    } else if (status === "succeeded") {
-      return (
-        categorizedItems &&
-        categorizedItems.map((category) => (
-          <MenuItemCategory key={category.id} category={category} />
-        ))
-      );
-    } else if (status === "failed") {
-      return <div className="error">{error}</div>;
+    switch (status) {
+      case REQUEST_STATUSES.loading:
+        return (
+          <div>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            Loading...
+          </div>
+        );
+      case REQUEST_STATUSES.succeeded:
+        return (
+          categorizedItems &&
+          categorizedItems.map((category) => (
+            <MenuItemCategory key={category.id} category={category} />
+          ))
+        );
+      case REQUEST_STATUSES.failed:
+        return <div className="error">{error}</div>;
+      default:
+        break;
     }
   };
   return (
