@@ -17,7 +17,11 @@ export default function MenuItemCategory({ category }) {
       </AccordionSummary>
       {menuItems &&
         menuItems.map((menuItem) => (
-          <CategorizedMenuItem key={menuItem.id} details={menuItem} />
+          <CategorizedMenuItem
+            key={menuItem.id}
+            name={menuItem.name}
+            price={menuItem.price}
+          />
         ))}
     </Accordion>
   );

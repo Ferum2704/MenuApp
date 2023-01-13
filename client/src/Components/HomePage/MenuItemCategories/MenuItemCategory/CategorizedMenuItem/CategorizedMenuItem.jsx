@@ -12,7 +12,7 @@ import {
   loginFormVisibilityChanged,
 } from "../../../../../slices/loginSlice";
 
-export default function CategorizedMenuItem({ details }) {
+export default function CategorizedMenuItem({ name, price }) {
   const dispatch = useDispatch();
   const loginStatus = useSelector(selectLoginStatus);
   const isOpenDialog = useSelector(selectIsOpenDialog);
@@ -27,10 +27,10 @@ export default function CategorizedMenuItem({ details }) {
       <AccordionDetails className="categorizedMenuItem">
         <div className="categorizedMenuItemDetails">
           <div className="categorizedMenuItemNameRating">
-            <span className="categorizedMenuItemName">{details.name}</span>
+            <span className="categorizedMenuItemName">{name}</span>
           </div>
           <div className="categorizedMenuItemPrice">
-            <span>{Math.round(details.price)}$</span>
+            <span>{Math.round(price)}$</span>
           </div>
         </div>
         <div className="categorizedMenuItemButton">

@@ -1,15 +1,11 @@
 import React from "react";
 import { Alert, Snackbar } from "@mui/material";
-export default function MySnackbar({ state, handleClose }) {
-  const vertical = "top";
-  const horizontal = "center";
-  const { message, severity, open } = state;
-
+export default function MySnackbar({ handleClose, isOpen, message, severity }) {
   return (
     <Snackbar
-      open={open}
+      open={isOpen}
       autoHideDuration={3000}
-      anchorOrigin={{ vertical, horizontal }}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
       onClose={handleClose}
     >
       <Alert severity={severity} sx={{ width: "100%" }} onClose={handleClose}>

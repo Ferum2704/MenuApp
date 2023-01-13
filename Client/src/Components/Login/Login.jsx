@@ -14,23 +14,24 @@ import { useState, useEffect } from "react";
 import { REQUEST_STATUSES } from "../../constants/apiRequestStatus";
 import {
   loginFormVisibilityChanged,
-  addNewUser,
+  loginUser,
   selectLoginError,
   selectLoginStatus,
   resetStatus,
 } from "../../slices/loginSlice";
 import "./Login.css";
 
-export default function Login(props) {
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+export default function Login({ open }) {
+  const [snackbarState, setSnackbarState] = React.useState({
+    isSnackbarOpen: false,
+    severity: "success",
+    message: "",
+  });
   const [inputName, setInputName] = useState("");
   const [inputPhoneNumber, setInputPhoneNumber] = useState("");
 
-  let snackbarState = {
-    message: "",
-    severity: "success",
-    open: isSnackbarOpen,
-  };
+  var snackbarMessage = "";
+  var snackbarSeverity = "success";
 
   const dispatch = useDispatch();
   const error = useSelector(selectLoginError);
@@ -39,13 +40,19 @@ export default function Login(props) {
   useEffect(() => {
     switch (status) {
       case REQUEST_STATUSES.failed:
-        setIsSnackbarOpen(true);
-        snackbarState.message = error;
-        snackbarState.severity = "error";
+        setSnackbarState((previous) => ({
+          ...previous,
+          message: error,
+          severity: "error",
+          isSnackbarOpen: true,
+        }));
         break;
       case REQUEST_STATUSES.succeeded:
-        setIsSnackbarOpen(true);
-        snackbarState.message = "Login is successful";
+        setSnackbarState((previous) => ({
+          ...previous,
+          message: "Login is successful",
+          isSnackbarOpen: true,
+        }));
         dispatch(loginFormVisibilityChanged(false));
         break;
       default:
@@ -53,19 +60,22 @@ export default function Login(props) {
     }
   }, [status]);
 
-  const handleCloseSnackBar = () => setIsSnackbarOpen(true);
+  const handleCloseSnackBar = () =>
+    setSnackbarState((previous) => ({ ...previous, isSnackbarOpen: false }));
   const handleInputNameChange = (e) => setInputName(e.target.value);
   const handleInputPhoneNumber = (e) => setInputPhoneNumber(e.target.value);
   const handleCloseForm = () => dispatch(loginFormVisibilityChanged(false));
-  const handleSubmit = () => {
-    dispatch(resetStatus());
-    dispatch(addNewUser({ inputName, inputPhoneNumber }));
-  };
+  const handleSubmit = () => dispatch(loginUser(inputName, inputPhoneNumber));
   return (
     <div>
-      <MySnackbar handleClose={handleCloseSnackBar} state={snackbarState} />
+      <MySnackbar
+        handleClose={handleCloseSnackBar}
+        isOpen={snackbarState.isSnackbarOpen}
+        message={snackbarState.message}
+        severity={snackbarState.severity}
+      />
       <Dialog
-        open={props.open}
+        open={open}
         BackdropProps={{ style: { backgroundColor: "transparent" } }}
         className="loginForm"
       >

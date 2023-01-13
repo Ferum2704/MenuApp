@@ -9,14 +9,18 @@ const initialState = {
   error: null,
 };
 
-export const addNewUser = createAsyncThunk(
-  "posts/addNewUser",
+export const sendLoginData = createAsyncThunk(
+  "posts/sendLoginData",
   async (newUser) => {
-    const endpoint = "/add";
+    const endpoint = "/login";
     const response = await axios.post(USER_SERVICE_URL + endpoint, newUser);
     return response.data;
   }
 );
+export const loginUser = (inputName, inputPhoneNumber) => (dispatch) => {
+  dispatch(resetStatus());
+  dispatch(sendLoginData({ inputName, inputPhoneNumber }));
+};
 
 const loginSlice = createSlice({
   name: "login",
@@ -31,11 +35,11 @@ const loginSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(addNewUser.fulfilled, (state, action) => {
+      .addCase(sendLoginData.fulfilled, (state, action) => {
         state.status = REQUEST_STATUSES.succeeded;
         state.id = action.payload;
       })
-      .addCase(addNewUser.rejected, (state, action) => {
+      .addCase(sendLoginData.rejected, (state, action) => {
         state.status = REQUEST_STATUSES.failed;
         state.error = action.error.message;
       });
