@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  snackbarClasses,
 } from "@mui/material";
 import MySnackbar from "../Snackbar/MySnackbar";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +16,6 @@ import {
   loginUser,
   selectLoginError,
   selectLoginStatus,
-  resetStatus,
 } from "../../slices/loginSlice";
 import "./Login.css";
 
@@ -29,9 +27,6 @@ export default function Login({ open }) {
   });
   const [inputName, setInputName] = useState("");
   const [inputPhoneNumber, setInputPhoneNumber] = useState("");
-
-  var snackbarMessage = "";
-  var snackbarSeverity = "success";
 
   const dispatch = useDispatch();
   const error = useSelector(selectLoginError);
