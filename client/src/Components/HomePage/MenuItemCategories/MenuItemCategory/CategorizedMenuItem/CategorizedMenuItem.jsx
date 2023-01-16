@@ -43,7 +43,7 @@ export default function CategorizedMenuItem({ name, price }) {
           </Button>
         </div>
       </AccordionDetails>
-      <Login open={isOpenDialog} />
+      <Login isLoginDialogOpen={isOpenDialog} />
     </div>
   );
 }

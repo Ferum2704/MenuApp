@@ -19,11 +19,11 @@ import {
 } from "../../slices/loginSlice";
 import "./Login.css";
 
-export default function Login({ open }) {
+export default function Login({ isLoginDialogOpen }) {
   const [snackbarState, setSnackbarState] = React.useState({
     isSnackbarOpen: false,
-    severity: "success",
-    message: "",
+    resultSeverity: "success",
+    resultMessage: "",
   });
   const [inputName, setInputName] = useState("");
   const [inputPhoneNumber, setInputPhoneNumber] = useState("");
@@ -70,7 +70,7 @@ export default function Login({ open }) {
         severity={snackbarState.severity}
       />
       <Dialog
-        open={open}
+        open={isLoginDialogOpen}
         BackdropProps={{ style: { backgroundColor: "transparent" } }}
         className="loginForm"
       >
