@@ -37,15 +37,15 @@ export default function Login({ isLoginDialogOpen }) {
       case REQUEST_STATUSES.failed:
         setSnackbarState((previous) => ({
           ...previous,
-          message: error,
-          severity: "error",
+          resultMessage: error,
+          resultSeverity: "error",
           isSnackbarOpen: true,
         }));
         break;
       case REQUEST_STATUSES.succeeded:
         setSnackbarState((previous) => ({
           ...previous,
-          message: "Login is successful",
+          resultMessage: "Login is successful",
           isSnackbarOpen: true,
         }));
         dispatch(loginFormVisibilityChanged(false));
@@ -66,8 +66,8 @@ export default function Login({ isLoginDialogOpen }) {
       <MySnackbar
         handleClose={handleCloseSnackBar}
         isOpen={snackbarState.isSnackbarOpen}
-        message={snackbarState.message}
-        severity={snackbarState.severity}
+        message={snackbarState.resultMessage}
+        severity={snackbarState.resultSeverity}
       />
       <Dialog
         open={isLoginDialogOpen}
