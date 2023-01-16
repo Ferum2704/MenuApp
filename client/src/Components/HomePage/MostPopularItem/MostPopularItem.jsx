@@ -4,20 +4,20 @@ import { Card } from "@mui/material";
 import "./MostPopularItem.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Button } from "@mui/material";
-export default function MostPopularItem(props) {
+export default function MostPopularItem({ name, photoName, price }) {
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">
-        <a>{props.item.name}</a>
+        <a>{name}</a>
       </CardContent>
       <CardMedia
         className="mostPopularItemImg"
         component="img"
-        image={"images/menuItems/" + props.item.photoName}
+        image={"images/menuItems/" + photoName}
       />
       <CardContent className="mostPopularItemInfo">
         <div className="mostPopularItemPrice">
-          Price: <span>{Math.round(props.item.price)}</span>
+          Price: <span>{Math.round(price)}</span>
         </div>
         <Button
           className="addToOrderButton"

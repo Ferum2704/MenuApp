@@ -1,0 +1,17 @@
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.categoryTitle {
+  padding: 0px;
+  padding-left: 50%;
+  padding-right: 50%;
+  font-size: 20px;
+  font-weight: 700;
+  height: 50px;
+  border-bottom: 2px solid red;
+  background-color: rgb(209, 241, 182);
+}
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+  min-height: 0px;
+  max-height: 50px;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.categoryAccordion {
+  background-color: aquamarine;
+}

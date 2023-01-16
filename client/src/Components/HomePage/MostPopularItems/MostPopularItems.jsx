@@ -23,8 +23,8 @@ export default function MostPopularItems() {
   return (
     <Container maxWidth="lg" className="mostPopularItems">
       <p className="mostPopularItemsTitle">Most Popular Menu Items</p>
-      <div class="swiper-button-prev swiper-button-prev-unique"></div>
-      <div class="swiper-button-next swiper-button-next-unique"></div>
+      <div className="swiper-button-prev swiper-button-prev-unique"></div>
+      <div className="swiper-button-next swiper-button-next-unique"></div>
       <Swiper
         className="mostPopularItemsSwiper"
         modules={[Navigation, Pagination]}
@@ -45,7 +45,11 @@ export default function MostPopularItems() {
         {mostPopularItems &&
           mostPopularItems.map((mostPopularItem) => (
             <SwiperSlide key={mostPopularItem.id}>
-              <MostPopularItem item={mostPopularItem} />
+              <MostPopularItem
+                name={mostPopularItem.name}
+                photoName={mostPopularItem.photoName}
+                price={mostPopularItem.price}
+              />
             </SwiperSlide>
           ))}
       </Swiper>
