@@ -6,9 +6,9 @@ using MenuItemService.Domain.Models;
 
 namespace MenuItemService.Persistency.Repositories
 {
-    public class MenuItemRepository : Repository<MenuItem>, IMenuItemRepository
+    public class MenuItemDapperRepository : DapperRepository<MenuItem>, IMenuItemDapperRepository
     {
-        public MenuItemRepository(IDapperContext context) : base(context) { }
+        public MenuItemDapperRepository(IDapperContext context) : base(context) { }
         public async Task<IEnumerable<CategoriedMenuItem>> GetCategorizedMenuItems()
         {
             string query = "SELECT MenuItem.Id AS MenuItemId," +

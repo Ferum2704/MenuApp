@@ -6,9 +6,9 @@ using ReviewService.Domain.Models;
 
 namespace ReviewService.Persistency.Repositories
 {
-    public class ReviewRepository : Repository<Review>, IReviewRepository
+    public class ReviewDapperRepository : DapperRepository<Review>, IReviewDapperRepository
     {
-        public ReviewRepository(IDapperContext context) : base(context) { }
+        public ReviewDapperRepository(IDapperContext context) : base(context) { }
 
         public async Task<IEnumerable<Review>> GetReviewsByItemIdAsync(Guid itemId)
         {

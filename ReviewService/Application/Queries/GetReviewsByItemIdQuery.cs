@@ -11,9 +11,9 @@ namespace ReviewService.Application.Queries
         public Guid Id { get; set; }
         public class GetReviewsByItemIdQueryHandler : IRequestHandler<GetReviewsByItemIdQuery, IEnumerable<ReviewVM>>
         {
-            private readonly IReviewRepository _repository;
+            private readonly IReviewDapperRepository _repository;
             private readonly IMapper _mapper;
-            public GetReviewsByItemIdQueryHandler(IReviewRepository repository, IMapper mapper)
+            public GetReviewsByItemIdQueryHandler(IReviewDapperRepository repository, IMapper mapper)
             {
                 _repository = repository;
                 _mapper = mapper;

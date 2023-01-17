@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class Repository<T>:IRepository<T> where T:class
+    public class DapperRepository<T>:IRepository<T> where T:class
     {
         protected readonly IDapperContext _context;
-        public Repository(IDapperContext context)
+        public DapperRepository(IDapperContext context)
         {
             _context = context;
         }

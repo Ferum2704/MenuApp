@@ -16,7 +16,7 @@ namespace UnitTests.OrderServiceTests
         [Fact]
         public void GetMostPopularMenuItemIdsQuery_ReturnListOfMostPopularMenuItemIds()
         {
-            var orderRepositoryStub = new Mock<IOrderRepository>();
+            var orderRepositoryStub = new Mock<IOrderDapperRepository>();
             orderRepositoryStub.Setup(x => x.GetMostPopularItemsId(It.IsAny<int>())).ReturnsAsync(new List<Guid>()
             {
                 Guid.NewGuid(),

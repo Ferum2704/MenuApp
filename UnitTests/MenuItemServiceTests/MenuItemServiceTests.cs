@@ -17,7 +17,7 @@ namespace UnitTestsCopy.MenuItemServiceTests
         [Fact]
         public void GetCategoriesWithMenuItemsQuery_ReturnsListOfCategoryViewModels()
         {
-            var menuItemRepositoryStub = new Mock<IMenuItemRepository>();
+            var menuItemRepositoryStub = new Mock<IMenuItemDapperRepository>();
             menuItemRepositoryStub.Setup(x => x.GetCategorizedMenuItems()).ReturnsAsync(new List<CategoriedMenuItem>()
             {
                 new CategoriedMenuItem()
