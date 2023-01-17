@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.GenericRepositories;
 using Common.Interfaces;
 using Dapper;
 using MenuItemService.Domain.IRepositories;
@@ -6,7 +6,7 @@ using MenuItemService.Domain.Models;
 
 namespace MenuItemService.Persistency.Repositories
 {
-    public class MenuItemDapperRepository : DapperRepository<MenuItem>, IMenuItemDapperRepository
+    public class MenuItemDapperRepository : DapperRepository<MenuItem>, IMenuItemRepository
     {
         public MenuItemDapperRepository(IDapperContext context) : base(context) { }
         public async Task<IEnumerable<CategoriedMenuItem>> GetCategorizedMenuItems()

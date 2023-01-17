@@ -9,8 +9,8 @@ namespace MenuItemService.Application.Queries
     {
         public class GetCategoriesWithMenuItemsQueryHandler : IRequestHandler<GetCategoriesWithMenuItemsQuery, IEnumerable<CategoryViewModel>>
         {
-            private readonly IMenuItemDapperRepository _repository;
-            public GetCategoriesWithMenuItemsQueryHandler(IMenuItemDapperRepository repository)
+            private readonly IMenuItemRepository _repository;
+            public GetCategoriesWithMenuItemsQueryHandler(IMenuItemRepository repository)
             {
                 _repository = repository;
             }

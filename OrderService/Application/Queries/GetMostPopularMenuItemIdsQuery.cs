@@ -8,8 +8,8 @@ namespace OrderService.Application.Queries
         public int ItemsNumber { get; set; }
         public class GetMostPopularMenuItemIdsQueryHandler : IRequestHandler<GetMostPopularMenuItemIdsQuery, IEnumerable<Guid>>
         {
-            private readonly IOrderDapperRepository _repository;
-            public GetMostPopularMenuItemIdsQueryHandler(IOrderDapperRepository repository)
+            private readonly IOrderRepository _repository;
+            public GetMostPopularMenuItemIdsQueryHandler(IOrderRepository repository)
             {
                 _repository = repository;
             }

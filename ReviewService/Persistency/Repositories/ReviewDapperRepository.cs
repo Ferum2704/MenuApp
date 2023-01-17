@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.GenericRepositories;
 using Common.Interfaces;
 using Dapper;
 using ReviewService.Domain.IRepositories;
@@ -6,7 +6,7 @@ using ReviewService.Domain.Models;
 
 namespace ReviewService.Persistency.Repositories
 {
-    public class ReviewDapperRepository : DapperRepository<Review>, IReviewDapperRepository
+    public class ReviewDapperRepository : DapperRepository<Review>, IReviewRepository
     {
         public ReviewDapperRepository(IDapperContext context) : base(context) { }
 

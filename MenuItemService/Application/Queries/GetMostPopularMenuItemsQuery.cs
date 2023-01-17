@@ -13,10 +13,10 @@ namespace MenuItemService.Application.Queries
         public int ItemsNumber { get; set; }
         public class GetMostPopularMenuItemsQueryHandler : IRequestHandler<GetMostPopularMenuItemsQuery, IEnumerable<ShortMenuItemViewModel>>
         {
-            private readonly IMenuItemDapperRepository _repository;
+            private readonly IMenuItemRepository _repository;
             private readonly IOrderServiceProxy _proxy;
             private readonly IMapper _mapper;
-            public GetMostPopularMenuItemsQueryHandler(IMenuItemDapperRepository repository, 
+            public GetMostPopularMenuItemsQueryHandler(IMenuItemRepository repository, 
                 IOrderServiceProxy proxy, IMapper mapper)
             {
                 _repository = repository;

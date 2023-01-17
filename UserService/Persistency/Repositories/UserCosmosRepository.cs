@@ -2,7 +2,7 @@
 
 namespace UserService.Persistency.Repositories
 {
-    public class UserCosmosRepository:IUserCosmosRepository
+    public class UserCosmosRepository:IUserRepository
     {
     }
 }
