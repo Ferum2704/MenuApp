@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Common.Extesions
 {
-    public static class CosmosMigrationManager
+    public static class CosmosAppExtensions
     {
         public static IApplicationBuilder EnsureCosmosDatabase(this IApplicationBuilder builder, string dbName)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Interfaces
 {
-    internal interface IDapperRepository<T>:IRepository<T> where T : class
+    public interface IDapperRepository<T>:IRepository<T> where T : class
     {
     }
 }
