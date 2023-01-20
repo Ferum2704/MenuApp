@@ -17,8 +17,8 @@ export default function CategorizedMenuItem({ name, price }) {
   const loginStatus = useSelector(selectLoginStatus);
   const isOpenDialog = useSelector(selectIsOpenDialog);
 
-  const handleClickOpen = () => {
-    if (loginStatus !== REQUEST_STATUSES.succeeded) {
+  const handleClickAddToOrder = () => {
+    if (!sessionStorage.getItem("userId")) {
       dispatch(loginFormVisibilityChanged(true));
     }
   };
@@ -37,7 +37,7 @@ export default function CategorizedMenuItem({ name, price }) {
           <Button
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
-            onClick={handleClickOpen}
+            onClick={handleClickAddToOrder}
           >
             Add to Order
           </Button>

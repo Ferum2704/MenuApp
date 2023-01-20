@@ -3,7 +3,6 @@ import axios from "axios";
 import { USER_SERVICE_URL } from "../constants/servicesURLs";
 import { REQUEST_STATUSES } from "../constants/apiRequestStatus";
 const initialState = {
-  id: 0,
   isOpenDialog: false,
   status: "idle",
   error: null,
@@ -19,7 +18,7 @@ export const sendLoginData = createAsyncThunk(
 );
 export const loginUser = (inputName, inputPhoneNumber) => (dispatch) => {
   dispatch(resetStatus());
-  dispatch(sendLoginData({ inputName, inputPhoneNumber }));
+  dispatch(sendLoginData({ name: inputName, phoneNumber: inputPhoneNumber }));
 };
 
 const loginSlice = createSlice({
@@ -37,7 +36,7 @@ const loginSlice = createSlice({
     builder
       .addCase(sendLoginData.fulfilled, (state, action) => {
         state.status = REQUEST_STATUSES.succeeded;
-        state.id = action.payload;
+        sessionStorage.setItem("userId", action.payload);
       })
       .addCase(sendLoginData.rejected, (state, action) => {
         state.status = REQUEST_STATUSES.failed;
