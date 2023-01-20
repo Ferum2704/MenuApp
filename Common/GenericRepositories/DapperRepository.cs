@@ -15,7 +15,7 @@ namespace Common.GenericRepositories
         {
             _context = context;
         }
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             var query = "SELECT * FROM " + typeof(T).Name + "WHERE Id = @id";
             using (var connection = _context.CreateConnection())
@@ -33,6 +33,11 @@ namespace Common.GenericRepositories
                 var resultList = await connection.QueryAsync<T>(query);
                 return resultList;
             }
+        }
+
+        public async Task<T> AddAsync(T entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

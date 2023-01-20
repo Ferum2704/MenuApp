@@ -14,7 +14,7 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddSingleton<ICosmosHelper, CosmosHelper>();
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IUserRepository, UserCosmosRepository>();
+builder.Services.AddSingleton<IUserCosmosRepository, UserCosmosRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -24,7 +24,7 @@ app.EnsureCosmosDatabase("TestInternshipDB");
 app.EnsureCosmosContainer(new ContainerProperties()
 {
     Id = "users",
-    PartitionKeyPath = "/id",
+    PartitionKeyPath = "/phoneNumber",
 });
 app.UseCors(x =>
 {

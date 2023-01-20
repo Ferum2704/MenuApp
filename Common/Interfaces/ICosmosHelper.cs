@@ -11,5 +11,6 @@ namespace Common.Interfaces
     {
         Database Database { get; set; }
         CosmosClient GetCosmosClient();
+        Container GetContainer(string containerName);
     }
 }

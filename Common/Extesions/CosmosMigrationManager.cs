@@ -2,6 +2,7 @@
 using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,19 @@ namespace Common.Extesions
             using var scope = builder.ApplicationServices.CreateScope();
             var helper = scope.ServiceProvider.GetService<ICosmosHelper>();
             helper.Database?.CreateContainerIfNotExistsAsync(containerProperties).GetAwaiter().GetResult();
+            return builder;
+        }
+        public static IApplicationBuilder EnsureCosmosContainerWithUniqueKeys
+            (this IApplicationBuilder builder, string containerName, string partitionKey, IReadOnlyList<string> uniquesKeys)
+        {
+            using var scope = builder.ApplicationServices.CreateScope();
+            var helper = scope.ServiceProvider.GetService<ICosmosHelper>();
+            ContainerBuilder containerBuilder = helper.Database?.DefineContainer(containerName, partitionKey);
+            foreach (var uniqueKey in uniquesKeys)
+            {
+                containerBuilder = containerBuilder.WithUniqueKey().Path($"/{uniqueKey}").Attach();
+            }
+            containerBuilder.CreateIfNotExistsAsync();
             return builder;
         }
     }

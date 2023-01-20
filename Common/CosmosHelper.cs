@@ -35,5 +35,9 @@ namespace Common
         {
             return _cosmosClient;
         }
+        public Container GetContainer(string containerName)
+        {
+            return _database.GetContainer(containerName);
+        }
     }
 }
