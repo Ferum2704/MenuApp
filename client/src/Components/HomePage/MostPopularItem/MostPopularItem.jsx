@@ -2,23 +2,13 @@ import { CardContent, CardMedia, Card, Button } from "@mui/material";
 import React from "react";
 import "./MostPopularItem.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "../../Login/Login";
-import { REQUEST_STATUSES } from "../../../constants/apiRequestStatus";
-import {
-  selectLoginStatus,
-  selectIsOpenDialog,
-  loginFormVisibilityChanged,
-} from "../../../slices/loginSlice";
+import { useDispatch } from "react-redux";
+import { useLoginUserId } from "../../../helpers/sessionHelper";
+
 export default function MostPopularItem({ name, photoName, price }) {
   const dispatch = useDispatch();
-  const loginStatus = useSelector(selectLoginStatus);
-
-  const handleClickAddToOrder = () => {
-    if (!sessionStorage.getItem("userId")) {
-      dispatch(loginFormVisibilityChanged(true));
-    }
-  };
+  const checkUserId = useLoginUserId();
+  const handleClickAddToOrder = () => checkUserId();
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">

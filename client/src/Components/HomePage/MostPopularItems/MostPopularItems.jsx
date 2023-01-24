@@ -1,6 +1,5 @@
 import React from "react";
 import MostPopularItem from "../MostPopularItem/MostPopularItem";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import { MENUITEM_SERVICE_URL } from "../../../constants/servicesURLs";
@@ -9,15 +8,10 @@ import axios from "axios";
 import { Container } from "@mui/system";
 import "./MostPopularItems.css";
 import "swiper/css/bundle";
-import { selectIsOpenDialog } from "../../../slices/loginSlice";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "../../Login/Login";
 
 export default function MostPopularItems() {
   const [mostPopularItems, setMostPopularItems] = useState([]);
   const url = "/mostPopularItems/2";
-
-  const isOpenDialog = useSelector(selectIsOpenDialog);
 
   useEffect(() => {
     axios.get(MENUITEM_SERVICE_URL + url).then((response) => {
@@ -58,7 +52,6 @@ export default function MostPopularItems() {
             </SwiperSlide>
           ))}
       </Swiper>
-      <Login isLoginDialogOpen={isOpenDialog} />
     </Container>
   );
 }

@@ -3,25 +3,12 @@ import "./CategorizedMenuItem.css";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "../../../../Login/Login";
-import { REQUEST_STATUSES } from "../../../../../constants/apiRequestStatus";
-import {
-  selectLoginStatus,
-  selectIsOpenDialog,
-  loginFormVisibilityChanged,
-} from "../../../../../slices/loginSlice";
+import { useLoginUserId } from "../../../../../helpers/sessionHelper";
 
 export default function CategorizedMenuItem({ name, price }) {
-  const dispatch = useDispatch();
-  const loginStatus = useSelector(selectLoginStatus);
-  const isOpenDialog = useSelector(selectIsOpenDialog);
+  const checkUserId = useLoginUserId();
+  const handleClickAddToOrder = () => checkUserId();
 
-  const handleClickAddToOrder = () => {
-    if (!sessionStorage.getItem("userId")) {
-      dispatch(loginFormVisibilityChanged(true));
-    }
-  };
   return (
     <div>
       <AccordionDetails className="categorizedMenuItem">
@@ -43,7 +30,6 @@ export default function CategorizedMenuItem({ name, price }) {
           </Button>
         </div>
       </AccordionDetails>
-      <Login isLoginDialogOpen={isOpenDialog} />
     </div>
   );
 }
