@@ -1,11 +1,10 @@
 import { loginFormVisibilityChanged } from "../slices/loginSlice";
-import { useDispatch } from "react-redux";
-export function useLoginUserId() {
-  const dispatch = useDispatch();
-  return function () {
-    console.log(sessionStorage.getItem("userId"));
-    if (!sessionStorage.getItem("userId")) {
-      dispatch(loginFormVisibilityChanged(true));
-    }
-  };
+
+export function checkUserIdForLogin(dispatch) {
+  if (!sessionStorage.getItem("userId")) {
+    dispatch(loginFormVisibilityChanged(true));
+  }
+}
+export function setUserId(userId) {
+  sessionStorage.setItem("userId", userId);
 }

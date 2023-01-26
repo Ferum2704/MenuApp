@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { USER_SERVICE_URL } from "../constants/servicesURLs";
 import { REQUEST_STATUSES } from "../constants/apiRequestStatus";
+import { setUserId } from "../helpers/sessionHelper";
+
 const initialState = {
   isOpenDialog: false,
   status: "idle",
@@ -36,7 +38,7 @@ const loginSlice = createSlice({
     builder
       .addCase(sendLoginData.fulfilled, (state, action) => {
         state.status = REQUEST_STATUSES.succeeded;
-        sessionStorage.setItem("userId", action.payload);
+        setUserId(action.payload);
       })
       .addCase(sendLoginData.rejected, (state, action) => {
         state.status = REQUEST_STATUSES.failed;

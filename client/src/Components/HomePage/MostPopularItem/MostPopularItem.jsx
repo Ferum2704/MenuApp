@@ -3,12 +3,11 @@ import React from "react";
 import "./MostPopularItem.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch } from "react-redux";
-import { useLoginUserId } from "../../../helpers/sessionHelper";
+import { checkUserIdForLogin } from "../../../helpers/sessionHelper";
 
 export default function MostPopularItem({ name, photoName, price }) {
   const dispatch = useDispatch();
-  const checkUserId = useLoginUserId();
-  const handleClickAddToOrder = () => checkUserId();
+  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">

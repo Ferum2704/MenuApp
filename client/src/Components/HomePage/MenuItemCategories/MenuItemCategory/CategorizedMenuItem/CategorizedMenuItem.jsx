@@ -3,11 +3,12 @@ import "./CategorizedMenuItem.css";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Button } from "@mui/material";
-import { useLoginUserId } from "../../../../../helpers/sessionHelper";
+import { useDispatch } from "react-redux";
+import { checkUserIdForLogin } from "../../../../../helpers/sessionHelper";
 
 export default function CategorizedMenuItem({ name, price }) {
-  const checkUserId = useLoginUserId();
-  const handleClickAddToOrder = () => checkUserId();
+  const dispatch = useDispatch();
+  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
 
   return (
     <div>
