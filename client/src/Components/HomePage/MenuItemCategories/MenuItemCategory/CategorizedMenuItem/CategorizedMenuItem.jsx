@@ -3,25 +3,13 @@ import "./CategorizedMenuItem.css";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "../../../../Login/Login";
-import { REQUEST_STATUSES } from "../../../../../constants/apiRequestStatus";
-import {
-  selectLoginStatus,
-  selectIsOpenDialog,
-  loginFormVisibilityChanged,
-} from "../../../../../slices/loginSlice";
+import { useDispatch } from "react-redux";
+import { checkUserIdForLogin } from "../../../../../helpers/sessionHelper";
 
 export default function CategorizedMenuItem({ name, price }) {
   const dispatch = useDispatch();
-  const loginStatus = useSelector(selectLoginStatus);
-  const isOpenDialog = useSelector(selectIsOpenDialog);
+  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
 
-  const handleClickOpen = () => {
-    if (loginStatus !== REQUEST_STATUSES.succeeded) {
-      dispatch(loginFormVisibilityChanged(true));
-    }
-  };
   return (
     <div>
       <AccordionDetails className="categorizedMenuItem">
@@ -37,13 +25,12 @@ export default function CategorizedMenuItem({ name, price }) {
           <Button
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
-            onClick={handleClickOpen}
+            onClick={handleClickAddToOrder}
           >
             Add to Order
           </Button>
         </div>
       </AccordionDetails>
-      <Login isLoginDialogOpen={isOpenDialog} />
     </div>
   );
 }

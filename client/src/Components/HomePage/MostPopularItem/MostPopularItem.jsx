@@ -1,10 +1,13 @@
-import { CardContent, CardMedia } from "@mui/material";
+import { CardContent, CardMedia, Card, Button } from "@mui/material";
 import React from "react";
-import { Card } from "@mui/material";
 import "./MostPopularItem.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { checkUserIdForLogin } from "../../../helpers/sessionHelper";
+
 export default function MostPopularItem({ name, photoName, price }) {
+  const dispatch = useDispatch();
+  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">
@@ -23,6 +26,7 @@ export default function MostPopularItem({ name, photoName, price }) {
           className="addToOrderButton"
           variant="contained"
           endIcon={<AddShoppingCartIcon />}
+          onClick={handleClickAddToOrder}
         >
           Add to Order
         </Button>

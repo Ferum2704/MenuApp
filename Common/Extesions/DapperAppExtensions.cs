@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Common.Extensions
 {
-    public static class Database
+    public static class DapperAppExtensions
     {
         public static IApplicationBuilder EnsureDatabase(this IApplicationBuilder builder, string dbName)
         {

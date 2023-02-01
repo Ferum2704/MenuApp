@@ -1,6 +1,5 @@
 import React from "react";
 import MostPopularItem from "../MostPopularItem/MostPopularItem";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import { MENUITEM_SERVICE_URL } from "../../../constants/servicesURLs";

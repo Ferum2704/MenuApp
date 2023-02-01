@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.GenericRepositories;
 using Common.Interfaces;
 using Dapper;
 using ReviewService.Domain.IRepositories;
@@ -6,9 +6,9 @@ using ReviewService.Domain.Models;
 
 namespace ReviewService.Persistency.Repositories
 {
-    public class ReviewRepository : Repository<Review>, IReviewRepository
+    public class ReviewDapperRepository : DapperRepository<Review>, IReviewRepository
     {
-        public ReviewRepository(IDapperContext context) : base(context) { }
+        public ReviewDapperRepository(IDapperContext context) : base(context) { }
 
         public async Task<IEnumerable<Review>> GetReviewsByItemIdAsync(Guid itemId)
         {

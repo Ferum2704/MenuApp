@@ -1,33 +1,31 @@
 using Common;
-using Common.Extensions;
+using Common.Extesions;
 using Common.Interfaces;
-using FluentMigrator.Runner;
 using MediatR;
-using OrderService.Application;
-using OrderService.Domain;
-using OrderService.Domain.IRepositories;
-using OrderService.Persistency.Repositories;
+using Microsoft.Azure.Cosmos;
 using System.Reflection;
+using UserService.Domain.IRepositories;
+using UserService.Persistency.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient();
-builder.Services.AddSingleton<IDapperContext, DapperContext>();
-builder.Services.AddSingleton<IOrderRepository, OrderDapperRepository>();
-builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
-.AddFluentMigratorCore()
-        .ConfigureRunner(c => c.AddSqlServer2016()
-            .WithGlobalConnectionString(builder.Configuration.GetConnectionString("DefaultConnection"))
-            .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddSingleton<ICosmosHelper, CosmosHelper>();
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IUserCosmosRepository, UserCosmosRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.EnsureCosmosDatabase("TestInternshipDB");
+app.EnsureCosmosContainer(new ContainerProperties()
+{
+    Id = "users",
+    PartitionKeyPath = "/phoneNumber",
+});
 app.UseCors(x =>
 {
     x.AllowAnyMethod()
@@ -35,8 +33,6 @@ app.UseCors(x =>
         .SetIsOriginAllowed(origin => true) // allow any origin
         .AllowCredentials();
 });
-app.EnsureDatabase("OrderServiceDb");
-app.MigrateDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

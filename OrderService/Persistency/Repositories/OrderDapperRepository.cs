@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.GenericRepositories;
 using Common.Interfaces;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +7,9 @@ using OrderService.Domain.Models;
 
 namespace OrderService.Persistency.Repositories
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderDapperRepository : DapperRepository<Order>, IOrderRepository
     {
-        public OrderRepository(IDapperContext context) : base(context)
+        public OrderDapperRepository(IDapperContext context) : base(context)
         {
         }
 

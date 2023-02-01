@@ -8,7 +8,8 @@ namespace Common.Interfaces
 {
     public interface IRepository<T>where T : class
     {
-        public Task<T> GetByIdAsync(int id);
+        public Task<T> AddAsync(T entity);
+        public Task<T> GetByIdAsync(Guid id);
         public Task<IEnumerable<T>> GetAllAsync();
     }
 }
