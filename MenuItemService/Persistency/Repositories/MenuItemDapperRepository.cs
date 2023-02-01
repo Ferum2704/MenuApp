@@ -3,6 +3,7 @@ using Common.Interfaces;
 using Dapper;
 using MenuItemService.Domain.IRepositories;
 using MenuItemService.Domain.Models;
+using System.Data;
 
 namespace MenuItemService.Persistency.Repositories
 {
@@ -35,6 +36,21 @@ namespace MenuItemService.Persistency.Repositories
             {
                 IEnumerable<MenuItem> menuItems = await connection.QueryAsync<MenuItem>(query);
                 return menuItems;
+            }
+        }
+        public async Task SetDiscountOnCategory
+            (int discount, string categoryName, decimal? minPrice = null, decimal? maxPrice = null)
+        {
+            string procedureName = "SetDiscountOnCategory";
+            var parameters = new DynamicParameters();
+            parameters.Add("Discount", discount, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("CategoryName", categoryName, DbType.String, ParameterDirection.Input);
+            parameters.Add("MinPrice", minPrice, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("MaxPrice", maxPrice, DbType.Decimal, ParameterDirection.Input);
+
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(procedureName, parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }
