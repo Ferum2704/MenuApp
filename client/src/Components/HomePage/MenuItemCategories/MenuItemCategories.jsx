@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { Container } from "@mui/system";
 import MenuItemCategory from "./MenuItemCategory/MenuItemCategory";

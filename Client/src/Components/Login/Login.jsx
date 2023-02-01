@@ -19,7 +19,7 @@ import {
 } from "../../slices/loginSlice";
 import "./Login.css";
 
-export default function Login({ isLoginDialogOpen }) {
+export default function Login({ isLoginDialogOpen = true }) {
   const [snackbarState, setSnackbarState] = React.useState({
     isSnackbarOpen: false,
     resultSeverity: "success",
@@ -77,15 +77,17 @@ export default function Login({ isLoginDialogOpen }) {
         <DialogTitle className="loginFormTitle">Please login</DialogTitle>
         <DialogContent>
           <TextField
-            id="outlined-basic"
+            id="name"
             label="Name"
+            name="name"
             variant="outlined"
             className="loginFormField"
             onChange={handleInputNameChange}
           />
           <br />
           <TextField
-            id="outlined-basic"
+            id="phone number"
+            name="phone number"
             label="Phone number"
             variant="outlined"
             className="loginFormField"
