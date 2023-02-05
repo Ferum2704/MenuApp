@@ -1,10 +1,12 @@
 ﻿using Common.Interfaces;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Dapper.SqlMapper;
 
 namespace Common.GenericRepositories
 {
@@ -37,7 +39,19 @@ namespace Common.GenericRepositories
 
         public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.InsertAsync(entity);
+                return entity;
+            }
+        }
+
+        public async Task AddRange(IEnumerable<T> entities)
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.InsertAsync(entities);
+            }
         }
     }
 }

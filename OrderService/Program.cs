@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IOrderRepository, OrderDapperRepository>();
+builder.Services.AddSingleton<IMenuItemOrderRepository, MenuItemOrderDapperRepository>();
 builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
 .AddFluentMigratorCore()
         .ConfigureRunner(c => c.AddSqlServer2016()

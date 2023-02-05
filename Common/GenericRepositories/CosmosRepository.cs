@@ -29,6 +29,11 @@ namespace Common.GenericRepositories
             return null;
         }
 
+        public Task AddRange(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
