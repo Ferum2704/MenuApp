@@ -8,3 +8,6 @@ export function checkUserIdForLogin(dispatch) {
 export function setUserId(userId) {
   sessionStorage.setItem("userId", userId);
 }
+export function getUserId() {
+  return sessionStorage.getItem("userId");
+}

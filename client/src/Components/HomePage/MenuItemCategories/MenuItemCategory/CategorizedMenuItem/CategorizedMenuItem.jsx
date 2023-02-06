@@ -5,10 +5,14 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { checkUserIdForLogin } from "../../../../../helpers/sessionHelper";
+import { addMenuItemToOrder } from "../../../../../slices/ordersSlice";
 
-export default function CategorizedMenuItem({ name, price }) {
+export default function CategorizedMenuItem({ id, name, price }) {
   const dispatch = useDispatch();
-  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
+  const handleClickAddToOrder = (menuItemId, menuItemPrice) => {
+    checkUserIdForLogin(dispatch);
+    dispatch(addMenuItemToOrder(menuItemId, menuItemPrice));
+  };
 
   return (
     <div>
@@ -25,7 +29,7 @@ export default function CategorizedMenuItem({ name, price }) {
           <Button
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
-            onClick={handleClickAddToOrder}
+            onClick={() => handleClickAddToOrder(id, price)}
           >
             Add to Order
           </Button>

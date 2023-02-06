@@ -28,9 +28,14 @@ namespace OrderService.Application.Commands
                 Order createdOrder = _mapper.Map<Order>(request.CreatedOrder);
                 await _orderRepository.AddAsync(createdOrder);
 
-                var orderedMenuItems = createdOrder.OrderedMenuItems.Select(item => { item.OrderId = createdOrder.Id; return item; });
-                await _menuItemOrderRepository.AddRange(orderedMenuItems);
-                return request.CreatedOrder;
+                createdOrder.OrderedMenuItems = createdOrder.OrderedMenuItems.Select(item => 
+                {
+                    item.Id= Guid.NewGuid();
+                    item.OrderId = createdOrder.Id; 
+                    return item; 
+                }).ToList();
+                await _menuItemOrderRepository.AddRange(createdOrder.OrderedMenuItems);
+                return _mapper.Map<OrderViewModel>(createdOrder);
             }
         }
     }

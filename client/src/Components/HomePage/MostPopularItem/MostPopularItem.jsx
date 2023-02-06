@@ -7,7 +7,10 @@ import { checkUserIdForLogin } from "../../../helpers/sessionHelper";
 
 export default function MostPopularItem({ name, photoName, price }) {
   const dispatch = useDispatch();
-  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
+  const handleClickAddToOrder = (menuItemId, menuItemPrice) => {
+    checkUserIdForLogin(dispatch);
+    dispatch(addMenuItemToOrder(menuItemId, menuItemPrice));
+  };
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">
@@ -26,7 +29,7 @@ export default function MostPopularItem({ name, photoName, price }) {
           className="addToOrderButton"
           variant="contained"
           endIcon={<AddShoppingCartIcon />}
-          onClick={handleClickAddToOrder}
+          onClick={() => handleClickAddToOrder(id, price)}
         >
           Add to Order
         </Button>
