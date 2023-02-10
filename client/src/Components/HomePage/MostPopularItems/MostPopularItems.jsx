@@ -45,6 +45,7 @@ export default function MostPopularItems() {
           mostPopularItems.map((mostPopularItem) => (
             <SwiperSlide key={mostPopularItem.id}>
               <MostPopularItem
+                id={mostPopularItem.id}
                 name={mostPopularItem.name}
                 photoName={mostPopularItem.photoName}
                 price={mostPopularItem.price}

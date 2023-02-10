@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import menuItemsReducer from "./slices/menuItemsSlice";
 import loginReducer from "./slices/loginSlice";
-import ordersReducer from "./slices/ordersSlice";
+import currentOrderReducer from "./slices/orderSlices/currentOrderSlice";
 export default configureStore({
   reducer: {
     menuItems: menuItemsReducer,
     login: loginReducer,
-    orders: ordersReducer,
+    currentOrder: currentOrderReducer,
   },
 });

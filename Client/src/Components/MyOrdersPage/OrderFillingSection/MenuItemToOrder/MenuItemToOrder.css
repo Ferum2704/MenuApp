@@ -1,0 +1,32 @@
+.menuItemToOrder {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 7vh;
+  border-bottom: 4px solid white;
+}
+.menuItemToOrderCounterValue {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.menuItemToOrder > div {
+  font-size: 20px;
+}
+.menuItemToOrderCounter > .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+  vertical-align: bottom;
+  padding: 0px;
+}
+@media screen and (max-width: 430px) {
+  .menuItemToOrderRemoveButtonWithText {
+    display: none;
+  }
+}
+@media screen and (min-width: 430px) {
+  .menuItemToOrder > div {
+    width: 20%;
+  }
+  .menuItemToOrderRemoveButton {
+    display: none;
+  }
+}
