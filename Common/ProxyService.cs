@@ -1,7 +1,9 @@
 ﻿using Common.Interfaces;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +34,20 @@ namespace Common
             var httpClient = _httpClientFactory.CreateClient();
             return await httpClient.GetFromJsonAsync<T>(ConcateUrl(endpointUrl));
         }
-
+        public async Task<HttpResponseMessage> GetFromJsonAsync<T>(string endpointUrl, T requestBody)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, ConcateUrl(endpointUrl))
+            {
+                Headers =
+                {
+                    {HeaderNames.Accept,  "application/json"}
+                }
+            };
+            request.Content = JsonContent.Create<T>(requestBody);
+            var httpClient = _httpClientFactory.CreateClient();
+            var response = await httpClient.SendAsync(request);
+            return response;
+        }
         public async Task<HttpResponseMessage> PostAsJsonAsync<T>(string endpointUrl, T obj)
         {
             var httpClient = _httpClientFactory.CreateClient();

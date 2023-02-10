@@ -13,6 +13,21 @@ namespace OrderService.Persistency.Repositories
         {
         }
 
+        public async Task<Order> GetCurrentOrder(Guid visitorId)
+        {
+            var queryCurrentOrder = "SELECT * FROM [Order] WHERE VisitorId = @visitorId AND Status = 'Created'";
+            var queryCurrentOrderItems = "SELECT * FROM MenuItemOrder WHERE OrderId = @orderId";
+            using (var connection = _context.CreateConnection())
+            {
+                var currentOrder = await connection.QueryFirstOrDefaultAsync<Order>(queryCurrentOrder, new { visitorId });
+                if (currentOrder != null)
+                {
+                    currentOrder.OrderedMenuItems = await connection.QueryAsync<MenuItemOrder>(queryCurrentOrderItems, new { orderId = currentOrder.Id });
+                }
+                return currentOrder;
+            }
+        }
+
         public async Task<IEnumerable<Guid>> GetMostPopularItemsId(int itemsNumber)
         {
             var query = "SELECT TOP " + itemsNumber.ToString() +" MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";

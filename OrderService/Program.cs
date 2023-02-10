@@ -7,12 +7,15 @@ using OrderService.Application;
 using OrderService.Domain;
 using OrderService.Domain.IRepositories;
 using OrderService.Persistency.Repositories;
+using OrderService.Proxies;
+using OrderService.Proxies.ProxyInterfaces;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IMenuItemServiceProxy, MenuItemServiceProxy>();
 builder.Services.AddSingleton<IDapperContext, DapperContext>();
 builder.Services.AddSingleton<IOrderRepository, OrderDapperRepository>();
 builder.Services.AddSingleton<IMenuItemOrderRepository, MenuItemOrderDapperRepository>();

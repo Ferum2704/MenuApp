@@ -19,7 +19,7 @@ namespace Common.GenericRepositories
         }
         public async Task<T> GetByIdAsync(Guid id)
         {
-            var query = "SELECT * FROM " + typeof(T).Name + "WHERE Id = @id";
+            var query = "SELECT * FROM " + typeof(T).Name + " WHERE Id = @id";
             using (var connection = _context.CreateConnection())
             {
                 var result = await connection.QueryFirstOrDefaultAsync<T>(query, new { id });
@@ -27,6 +27,7 @@ namespace Common.GenericRepositories
             }
 
         }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var query = "SELECT * FROM " + typeof(T).Name;
@@ -51,6 +52,22 @@ namespace Common.GenericRepositories
             using (var connection = _context.CreateConnection())
             {
                 await connection.InsertAsync(entities);
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<Guid> ids)
+        {
+            string concatenatedGuids = string.Empty;
+            foreach (var guid in ids)
+            {
+                concatenatedGuids += "'" + guid.ToString() + "',";
+            }
+            concatenatedGuids = concatenatedGuids.Remove(concatenatedGuids.Length - 1);
+            string query = "SELECT * FROM " + typeof(T).Name + " WHERE Id IN (" + concatenatedGuids + ")";
+            using (var connection = _context.CreateConnection())
+            {
+                IEnumerable<T> items = await connection.QueryAsync<T>(query);
+                return items;
             }
         }
     }

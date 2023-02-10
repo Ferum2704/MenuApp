@@ -22,9 +22,14 @@ namespace OrderService.Presentation.Controllers
             return Ok(await _mediator.Send(new GetMostPopularMenuItemIdsQuery() { ItemsNumber= itemsNumber }));
         }
         [HttpPost("newOrder")]
-        public async Task<IActionResult> CreateNewOrder(OrderViewModel newOrder)
+        public async Task<IActionResult> CreateNewOrder(OrderToCreateInfoViewModel newOrderInfo)
         {
-            return Ok(await _mediator.Send(new CreateNewOrderCommand() { CreatedOrder = newOrder }));
+            return Ok(await _mediator.Send(new CreateNewOrderCommand() { NewOrderInfo = newOrderInfo }));
+        }
+        [HttpGet("currentOrder/{visitorId:Guid?}")]
+        public async Task<IActionResult> GetCurrentOrder(Guid visitorId)
+        {
+            return Ok(await _mediator.Send(new GetCurrentOrderQuery() { VisitorId= visitorId }));
         }
     }
 }

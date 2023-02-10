@@ -9,7 +9,7 @@ namespace OrderService.Profiles
         public MappingProfile()
         {
             CreateMap<OrderViewModel, Order>().ReverseMap();
-            CreateMap<MenuItemOrder, MenuItemOrderViewModel>().ReverseMap();
+            CreateMap<MenuItemOrder, OrderedMenuItemViewModel>().ReverseMap();
         }
     }
 }
