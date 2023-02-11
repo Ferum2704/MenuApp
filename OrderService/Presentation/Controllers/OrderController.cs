@@ -31,5 +31,10 @@ namespace OrderService.Presentation.Controllers
         {
             return Ok(await _mediator.Send(new GetCurrentOrderQuery() { VisitorId= visitorId }));
         }
+        [HttpDelete("currentOrder/{visitorId:Guid?}")]
+        public async Task<IActionResult> EnsureNoCurrentOrder(Guid visitorId)
+        {
+            return Ok(await _mediator.Send(new EnsureNoCurrentOrderQuery { VisitorId = visitorId }));
+        }
     }
 }

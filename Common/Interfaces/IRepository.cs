@@ -13,5 +13,6 @@ namespace Common.Interfaces
         public Task<IEnumerable<T>> GetAllAsync();
         public Task<T> AddAsync(T entity);
         public Task AddRange(IEnumerable<T> entities); 
+        public Task Delete(Guid id);
     }
 }

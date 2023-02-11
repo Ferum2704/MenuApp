@@ -7,5 +7,6 @@ namespace OrderService.Domain.IRepositories
     {
         public Task<IEnumerable<Guid>> GetMostPopularItemsId(int itemsNumber);
         public Task<Order> GetCurrentOrder(Guid visitorId);
+        public Task DeleteOrderByVisitorId(Guid visitorId);
     }
 }

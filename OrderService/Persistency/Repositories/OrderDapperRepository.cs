@@ -27,7 +27,14 @@ namespace OrderService.Persistency.Repositories
                 return currentOrder;
             }
         }
-
+        public async Task DeleteOrderByVisitorId(Guid visitorId)
+        {
+            var query = "DELETE FROM [Order] WHERE VisitorId = @visitorId";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { visitorId });
+            }
+        }
         public async Task<IEnumerable<Guid>> GetMostPopularItemsId(int itemsNumber)
         {
             var query = "SELECT TOP " + itemsNumber.ToString() +" MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";

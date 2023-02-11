@@ -70,5 +70,13 @@ namespace Common.GenericRepositories
                 return items;
             }
         }
+        public async Task Delete(Guid id)
+        {
+            var query = "DELETE FROM " + typeof(T).Name + " WHERE Id = @id";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { id });
+            }
+        }
     }
 }

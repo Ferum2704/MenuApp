@@ -10,6 +10,7 @@ namespace Common.Interfaces
     {
         public string ServiceUrl { get;}
         public Task<T> GetFromJsonAsync<T>(string url);
+        public Task<HttpResponseMessage> GetFromJsonAsync<T>(string endpointUrl, T requestBody);
         public Task<HttpResponseMessage> PostAsJsonAsync<T>(string url, T obj);
         public Task<HttpResponseMessage> DeleteAsync(string url);
         public Task<HttpResponseMessage> PutAsJsonAsync<T>(string url, T obj);

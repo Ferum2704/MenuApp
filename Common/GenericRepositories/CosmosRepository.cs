@@ -34,6 +34,11 @@ namespace Common.GenericRepositories
             throw new NotImplementedException();
         }
 
+        public Task Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
