@@ -15,7 +15,7 @@ namespace UserService.Proxies
 
         public async Task EnsureNoCurrentOrder(Guid visitorId)
         {
-            await DeleteAsync($"currentOrder/{visitorId}");
+            await DeleteAsync($"currentOrder?visitorId={visitorId}");
         }
     }
 }

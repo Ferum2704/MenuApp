@@ -10,10 +10,10 @@ import { getUserId } from "../../../../../helpers/sessionHelper";
 
 export default function CategorizedMenuItem({ id, name, price }) {
   const dispatch = useDispatch();
-  const handleClickAddToOrder = (menuItemId) => {
+  const handleClickAddToOrder = (menuItem) => {
     checkUserIdForLogin(dispatch);
     if (getUserId()) {
-      dispatch(addMenuItemToOrder(menuItemId));
+      dispatch(addMenuItemToOrder(menuItem));
     }
   };
 
@@ -32,7 +32,7 @@ export default function CategorizedMenuItem({ id, name, price }) {
           <Button
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
-            onClick={() => handleClickAddToOrder(id)}
+            onClick={() => handleClickAddToOrder({ id, name, price })}
           >
             Add to Order
           </Button>

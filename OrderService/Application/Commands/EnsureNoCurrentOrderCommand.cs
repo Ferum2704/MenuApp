@@ -1,20 +1,20 @@
 ﻿using MediatR;
 using OrderService.Domain.IRepositories;
 
-namespace OrderService.Application.Queries
+namespace OrderService.Application.Commands
 {
-    public class EnsureNoCurrentOrderQuery:IRequest
+    public class EnsureNoCurrentOrderCommand : IRequest
     {
         public Guid VisitorId { get; set; }
-        public class EnsureNoCurrentOrderQueryHandler : IRequestHandler<EnsureNoCurrentOrderQuery>
+        public class EnsureNoCurrentOrderCommandHandler : IRequestHandler<EnsureNoCurrentOrderCommand>
         {
             private readonly IOrderRepository _repository;
-            public EnsureNoCurrentOrderQueryHandler(IOrderRepository repository)
+            public EnsureNoCurrentOrderCommandHandler(IOrderRepository repository)
             {
                 _repository = repository;
             }
 
-            public async Task<Unit> Handle(EnsureNoCurrentOrderQuery request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(EnsureNoCurrentOrderCommand request, CancellationToken cancellationToken)
             {
                 await _repository.DeleteOrderByVisitorId(request.VisitorId);
                 return Unit.Value;

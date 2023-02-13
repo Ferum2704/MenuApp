@@ -8,6 +8,7 @@ import {
   selectCurrentOrderError,
   selectCurrentOrderStatus,
   getCurrentOrder,
+  cancelCurrentOrder,
 } from "../../../slices/orderSlices/currentOrderSlice";
 import MenuItemToOrder from "./MenuItemToOrder/MenuItemToOrder";
 import { renderResultByStatus } from "../../../helpers/renderHelper";
@@ -18,15 +19,18 @@ export default function OrderFillingSection() {
   var _ = require("lodash");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (getUserId()) {
-      dispatch(getCurrentOrder());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (getUserId()) {
+  //     dispatch(getCurrentOrder());
+  //   }
+  // }, []);
 
   const currentOrder = useSelector(selectCurrentOrder);
   const currentOrderStatus = useSelector(selectCurrentOrderStatus);
   const currentOrderError = useSelector(selectCurrentOrderError);
+
+  const handleClickCancelOrder = (orderId) =>
+    dispatch(cancelCurrentOrder(orderId));
 
   const successContentResult = (
     <div>
@@ -38,13 +42,16 @@ export default function OrderFillingSection() {
       {currentOrder.orderedMenuItems &&
         currentOrder.orderedMenuItems.map((item) => (
           <MenuItemToOrder
+            key={item.id}
+            id={item.id}
+            menuItemId={item.menuItemId}
             name={item.name}
             number={item.number}
             price={item.price}
           />
         ))}
       <div className="totalOrderPrice">
-        Total order price:{" "}
+        Total order price:
         <span className="totalOrderPriceValue">{currentOrder.price}</span>
       </div>
       <div className="controlOrderButtons">
@@ -53,6 +60,7 @@ export default function OrderFillingSection() {
             className="controlOrderButton"
             variant="contained"
             color="error"
+            onClick={() => handleClickCancelOrder(currentOrder.id)}
           >
             Cancel Order
           </Button>

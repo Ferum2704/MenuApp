@@ -17,6 +17,8 @@ import {
   selectLoginError,
   selectLoginStatus,
 } from "../../slices/loginSlice";
+import { getCurrentOrder } from "../../slices/orderSlices/currentOrderSlice";
+import { getUserId } from "../../helpers/sessionHelper";
 import "./Login.css";
 
 export default function Login({ isLoginDialogOpen }) {
@@ -31,6 +33,12 @@ export default function Login({ isLoginDialogOpen }) {
   const dispatch = useDispatch();
   const error = useSelector(selectLoginError);
   const status = useSelector(selectLoginStatus);
+
+  useEffect(() => {
+    if (getUserId()) {
+      dispatch(getCurrentOrder());
+    }
+  }, []);
 
   useEffect(() => {
     switch (status) {

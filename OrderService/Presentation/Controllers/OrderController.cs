@@ -31,10 +31,25 @@ namespace OrderService.Presentation.Controllers
         {
             return Ok(await _mediator.Send(new GetCurrentOrderQuery() { VisitorId= visitorId }));
         }
-        [HttpDelete("currentOrder/{visitorId:Guid?}")]
-        public async Task<IActionResult> EnsureNoCurrentOrder(Guid visitorId)
+        [HttpDelete("currentOrder/{id:Guid?}")]
+        public async Task<IActionResult> CancelCurrentOrder(Guid id)
         {
-            return Ok(await _mediator.Send(new EnsureNoCurrentOrderQuery { VisitorId = visitorId }));
+            return Ok(await _mediator.Send(new CancelCurrentOrderByIdCommand { Id = id }));
+        }
+        [HttpDelete("currentOrder")]
+        public async Task<IActionResult> EnsureNoCurrentOrder([FromQuery] Guid visitorId)
+        {
+            return Ok(await _mediator.Send(new EnsureNoCurrentOrderCommand { VisitorId = visitorId }));
+        }
+        [HttpPost("menuItem")]
+        public async Task<IActionResult> AddMenuItem(OrderedMenuItemViewModel item)
+        {
+            return Ok(await _mediator.Send(new AddItemToOrderCommand() {Item = item }));
+        }
+        [HttpDelete("menuItem")]
+        public async Task<IActionResult> DeleteMenuItem([FromQuery] Guid id, [FromQuery] Guid orderId)
+        {
+            return Ok(await _mediator.Send(new DeleteItemByIdFromOrderCommand() { Id= id, OrderId= orderId }));
         }
     }
 }
