@@ -13,13 +13,44 @@ namespace OrderService.Persistency.Repositories
         {
         }
 
+        public async Task<Order> GetCurrentOrder(Guid visitorId)
+        {
+            var queryCurrentOrder = "SELECT * FROM [Order] WHERE VisitorId = @visitorId AND Status = 'Created'";
+            var queryCurrentOrderItems = "SELECT * FROM MenuItemOrder WHERE OrderId = @orderId";
+            using (var connection = _context.CreateConnection())
+            {
+                var currentOrder = await connection.QueryFirstOrDefaultAsync<Order>(queryCurrentOrder, new { visitorId });
+                if (currentOrder != null)
+                {
+                    currentOrder.OrderedMenuItems = await connection.QueryAsync<MenuItemOrder>(queryCurrentOrderItems, new { orderId = currentOrder.Id });
+                }
+                return currentOrder;
+            }
+        }
+        public async Task DeleteOrderByVisitorId(Guid visitorId)
+        {
+            var query = "DELETE FROM [Order] WHERE VisitorId = @visitorId";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { visitorId });
+            }
+        }
         public async Task<IEnumerable<Guid>> GetMostPopularItemsId(int itemsNumber)
         {
-            var query = "SELECT TOP " + itemsNumber.ToString() +" MenuItemId FROM MenuItemOrder GROUP BY MenuItemId ORDER BY SUM(Number) DESC";
+            var query = "SELECT TOP " + itemsNumber.ToString() + " MenuItemId FROM MenuItemOrder INNER JOIN [Order] ON MenuItemOrder.OrderId = [Order].Id WHERE [Order].Status = 'Done' GROUP BY MenuItemId ORDER BY SUM(Number) DESC";
             using (var connection = _context.CreateConnection())
             {
                 IEnumerable<Guid> menuItemsIds = await connection.QueryAsync<Guid>(query, new {itemsNumber});
                 return menuItemsIds;
+            }
+        }
+
+        public async Task DeleteCurrentOrderById(Guid id)
+        {
+            var query = "DELETE FROM [Order] WHERE Id = @id AND Status = 'Created'";
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, new { id });
             }
         }
     }

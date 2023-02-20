@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import OrderFillingSection from "./OrderFillingSection/OrderFillingSection";
 
 export default function MyOrders() {
   return (
-    <div>MyOrders</div>
-  )
+    <div>
+      <OrderFillingSection />
+    </div>
+  );
 }

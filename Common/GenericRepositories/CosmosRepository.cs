@@ -29,6 +29,16 @@ namespace Common.GenericRepositories
             return null;
         }
 
+        public Task AddRange(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             throw new NotImplementedException();
@@ -44,6 +54,12 @@ namespace Common.GenericRepositories
             }
             return null;
         }
+
+        public Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<Guid> ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<T> GetByPartitionKey(string partitionKeyValue)
         {
             ContainerProperties containerProperties = await _container.ReadContainerAsync();
@@ -54,11 +70,11 @@ namespace Common.GenericRepositories
                 .WithParameter("@partitionKeyValue", partitionKeyValue);
             using var feed = _container.GetItemQueryStreamIterator(queryDefinition: query);
             var response = await feed.ReadNextAsync();
-            if (response.Content is not null)
-            {
-                StreamReader streamReader = new StreamReader(response.Content);
-                JObject jsonResult = JObject.Parse(streamReader.ReadToEnd());
-                JToken jsonItem = jsonResult["Documents"].First;
+            StreamReader streamReader = new StreamReader(response.Content);
+            JObject jsonResult = JObject.Parse(streamReader.ReadToEnd());
+            JToken jsonItem = jsonResult["Documents"].First;
+            if (jsonItem is not null)
+            {  
                 T item = jsonItem.ToObject<T>();
                 return item;
             }

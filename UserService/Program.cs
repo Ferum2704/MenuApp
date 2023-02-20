@@ -6,10 +6,14 @@ using Microsoft.Azure.Cosmos;
 using System.Reflection;
 using UserService.Domain.IRepositories;
 using UserService.Persistency.Repositories;
+using UserService.Proxies;
+using UserService.Proxies.ProxyInterfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IOrderServiceProxy, OrderServiceProxy>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddSingleton<ICosmosHelper, CosmosHelper>();

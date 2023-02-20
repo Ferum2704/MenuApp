@@ -4,8 +4,23 @@
 .iconLabel {
   padding-top: 0;
 }
+.iconLabelValue {
+  display: inline;
+}
 @media screen and (max-width: 400px) {
-  .iconLabel {
+  .iconLabelValue {
     display: none;
   }
+}
+.myOrdersTab {
+  position: relative;
+}
+.menuItemsNumberInCurrentOrder {
+  position: absolute;
+  top: 20%;
+  font-size: 18px;
+  color: red;
+  vertical-align: middle;
+  margin-left: 10px;
+  display: inline-block;
 }

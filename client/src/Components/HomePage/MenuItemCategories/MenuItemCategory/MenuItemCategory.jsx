@@ -18,6 +18,7 @@ export default function MenuItemCategory({ category }) {
         menuItems.map((menuItem) => (
           <CategorizedMenuItem
             key={menuItem.id}
+            id={menuItem.id}
             name={menuItem.name}
             price={menuItem.price}
           />

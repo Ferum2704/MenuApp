@@ -4,10 +4,17 @@ import "./MostPopularItem.css";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch } from "react-redux";
 import { checkUserIdForLogin } from "../../../helpers/sessionHelper";
+import { addMenuItemToOrder } from "../../../slices/orderSlices/currentOrderSlice";
+import { getUserId } from "../../../helpers/sessionHelper";
 
-export default function MostPopularItem({ name, photoName, price }) {
+export default function MostPopularItem({ id, name, photoName, price }) {
   const dispatch = useDispatch();
-  const handleClickAddToOrder = () => checkUserIdForLogin(dispatch);
+  const handleClickAddToOrder = (menuItem) => {
+    checkUserIdForLogin(dispatch);
+    if (getUserId()) {
+      dispatch(addMenuItemToOrder(menuItem));
+    }
+  };
   return (
     <Card className="mostPopularItemCard">
       <CardContent className="mostPopularItemTitle">
@@ -26,7 +33,7 @@ export default function MostPopularItem({ name, photoName, price }) {
           className="addToOrderButton"
           variant="contained"
           endIcon={<AddShoppingCartIcon />}
-          onClick={handleClickAddToOrder}
+          onClick={() => handleClickAddToOrder({ id, name, price })}
         >
           Add to Order
         </Button>
